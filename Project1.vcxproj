@@ -85,8 +85,10 @@
     <ClCompile Include="Table.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="database.h" />
+    <ClInclude Include="Database.h" />
+    <ClInclude Include="Record.h" />
     <ClInclude Include="std_lib_facilities.h" />
+    <ClInclude Include="Table.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
