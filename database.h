@@ -7,7 +7,15 @@
 
 //! Database Class
 /*!
-	Application Programming Interface (API) for Database System
+	Application Programming Interface (API) for Database System Implementation by team 19.
+
+	Any questions/concerns regarding API usage, documentation clarity, or grading should be directed to keith.pattison.tamu@gmail.com
+
+	##### Team 19 Members
+	- Keith Pattison (keith.pattison.tamu@gmail.com)
+	- Hamdan Siddiqui (hamdansiddiqui@hotmail.com)
+	- David Holdren (djholdren@tamu.edu)
+
 */
 
 class Database {
@@ -125,6 +133,7 @@ public:
 
 		   _FROM_
 		       - Name of table within database
+
 		   _WHERE_
 			   - Conditions that should be present in the attributes.
 			   - Limited to comparisons using =, !=, >, < >=. <= of attributes that have the same type
@@ -152,6 +161,7 @@ public:
 
 		   _DELETE_
 		       - Name of table containing tuples to be deleted within database
+
 		   _WHERE_
 			   - Conditions that should be present in the attributes.
 			   - Limited to comparisons using =, !=, >, < >=. <= of attributes that have the same type
