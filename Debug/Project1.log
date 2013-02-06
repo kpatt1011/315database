@@ -1,4 +1,4 @@
-﻿Build started 2/4/2013 3:46:16 PM.
+﻿Build started 2/6/2013 2:41:24 AM.
      1>Project "C:\Users\Keith\Documents\csce315\315database\Project1.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\Project1.unsuccessfulbuild" because "AlwaysCreate" was specified.
@@ -17,4 +17,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.12
+Time Elapsed 00:00:01.27
