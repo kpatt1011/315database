@@ -1,4 +1,5 @@
 #include "std_lib_facilities.h"
+#include "Record.h"
 
 #ifndef TABLE_H
 #define TABLE_H
@@ -126,7 +127,7 @@ public:
 	   None
 	*/
 	template <typename Type>
-	map<String, Type> get_columns();
+	map< String, Type > get_columns();
 
 	/*! 
 	

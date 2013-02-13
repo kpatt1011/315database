@@ -1,20 +1,59 @@
-﻿Build started 2/6/2013 2:41:24 AM.
+﻿Build started 2/13/2013 3:32:01 PM.
      1>Project "C:\Users\Keith\Documents\csce315\315database\Project1.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
-         Creating "Debug\Project1.unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "Debug\Project1.unsuccessfulbuild".
        ClCompile:
-         All outputs are up-to-date.
-       ManifestResourceCompile:
-         All outputs are up-to-date.
-       Link:
-         All outputs are up-to-date.
-       Manifest:
-         All outputs are up-to-date.
-       FinalizeBuildStatus:
-         Deleting file "Debug\Project1.unsuccessfulbuild".
-         Touching "Debug\Project1.lastbuildstate".
-     1>Done Building Project "C:\Users\Keith\Documents\csce315\315database\Project1.vcxproj" (build target(s)).
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _WINDLL /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Database.cpp Record.cpp Table.cpp
+         Table.cpp
+     1>c:\users\keith\documents\csce315\315database\table.h(53): error C2061: syntax error : identifier 'map'
+     1>c:\users\keith\documents\csce315\315database\table.h(130): error C2143: syntax error : missing ';' before '<'
+     1>c:\users\keith\documents\csce315\315database\table.h(130): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\keith\documents\csce315\315database\table.h(130): error C2238: unexpected token(s) preceding ';'
+     1>c:\users\keith\documents\csce315\315database\table.h(130): error C2988: unrecognizable template declaration/definition
+     1>c:\users\keith\documents\csce315\315database\table.h(130): error C2059: syntax error : '<'
+     1>c:\users\keith\documents\csce315\315database\table.h(147): error C2238: unexpected token(s) preceding ';'
+     1>c:\users\keith\documents\csce315\315database\table.h(302): error C2143: syntax error : missing ';' before '}'
+     1>c:\users\keith\documents\csce315\315database\table.h(302): warning C4520: 'Table' : multiple default constructors specified
+     1>c:\users\keith\documents\csce315\315database\table.cpp(17): error C2143: syntax error : missing ';' before '<'
+     1>c:\users\keith\documents\csce315\315database\table.cpp(17): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\keith\documents\csce315\315database\table.cpp(17): error C2988: unrecognizable template declaration/definition
+     1>c:\users\keith\documents\csce315\315database\table.cpp(17): error C2059: syntax error : '<'
+     1>c:\users\keith\documents\csce315\315database\table.cpp(17): error C2039: 'get_columns' : is not a member of 'Table'
+                 c:\users\keith\documents\csce315\315database\table.h(12) : see declaration of 'Table'
+     1>c:\users\keith\documents\csce315\315database\table.cpp(20): error C2039: 'get_size' : is not a member of 'Table'
+                 c:\users\keith\documents\csce315\315database\table.h(12) : see declaration of 'Table'
+     1>c:\users\keith\documents\csce315\315database\table.cpp(20): error C2143: syntax error : missing ';' before '{'
+     1>c:\users\keith\documents\csce315\315database\table.cpp(20): error C2447: '{' : missing function header (old-style formal list?)
+     1>c:\users\keith\documents\csce315\315database\table.cpp(23): error C2511: 'Record Table::get_record_at(int)' : overloaded member function not found in 'Table'
+                 c:\users\keith\documents\csce315\315database\table.h(12) : see declaration of 'Table'
+     1>c:\users\keith\documents\csce315\315database\table.cpp(26): error C2511: 'void Table::rename_column(String,String)' : overloaded member function not found in 'Table'
+                 c:\users\keith\documents\csce315\315database\table.h(12) : see declaration of 'Table'
+     1>c:\users\keith\documents\csce315\315database\table.cpp(29): error C2511: 'Table Table::cross_join(Table,Table)' : overloaded member function not found in 'Table'
+                 c:\users\keith\documents\csce315\315database\table.h(12) : see declaration of 'Table'
+     1>c:\users\keith\documents\csce315\315database\table.cpp(32): error C2511: 'int Table::entry_sum(String)' : overloaded member function not found in 'Table'
+                 c:\users\keith\documents\csce315\315database\table.h(12) : see declaration of 'Table'
+     1>c:\users\keith\documents\csce315\315database\table.cpp(35): error C2511: 'int Table::entry_count(String)' : overloaded member function not found in 'Table'
+                 c:\users\keith\documents\csce315\315database\table.h(12) : see declaration of 'Table'
+     1>c:\users\keith\documents\csce315\315database\table.cpp(40): error C2244: 'Table::entry_min' : unable to match function definition to an existing declaration
+                 definition
+                 'Type Table::entry_min(String)'
+                 existing declarations
+                 'Type Table::entry_min(String)'
+         Record.cpp
+         Database.cpp
+     1>c:\users\keith\documents\csce315\315database\database.cpp(1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\keith\documents\csce315\315database\table.h(53): error C2061: syntax error : identifier 'map'
+     1>c:\users\keith\documents\csce315\315database\table.h(130): error C2143: syntax error : missing ';' before '<'
+     1>c:\users\keith\documents\csce315\315database\table.h(130): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\keith\documents\csce315\315database\table.h(130): error C2238: unexpected token(s) preceding ';'
+     1>c:\users\keith\documents\csce315\315database\table.h(130): error C2988: unrecognizable template declaration/definition
+     1>c:\users\keith\documents\csce315\315database\table.h(130): error C2059: syntax error : '<'
+     1>c:\users\keith\documents\csce315\315database\table.h(147): error C2238: unexpected token(s) preceding ';'
+     1>c:\users\keith\documents\csce315\315database\table.h(302): error C2143: syntax error : missing ';' before '}'
+     1>c:\users\keith\documents\csce315\315database\table.h(302): warning C4520: 'Table' : multiple default constructors specified
+         Generating Code...
+     1>Done Building Project "C:\Users\Keith\Documents\csce315\315database\Project1.vcxproj" (build target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:01.27
+Time Elapsed 00:00:02.61
