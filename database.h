@@ -1,71 +1,190 @@
 #include "std_lib_facilities.h"
+#include "Record.h"
+#include "Table.h"
 
 #ifndef DATABASE_H
 #define DATABASE_H
 
+//! Database Class
+/*!
+	Application Programming Interface (API) for Database System Implementation by team 19.
+
+	Any questions/concerns regarding API usage, documentation clarity, or grading should be directed to keith.pattison.tamu@gmail.com
+
+	##### Team 19 Members
+	- Keith Pattison (keith.pattison.tamu@gmail.com)
+	- Hamdan Siddiqui (hamdansiddiqui@hotmail.com)
+	- David Holdren (djholdren@tamu.edu)
+
+*/
 
 class Database {
 	
 public: 
-	// Constructor function with no arguments. Creates Empty database
+	/*! 
+	
+	   ### Description
+	   ____
+	   Creates an empty database
+
+	   ### Return Value
+	   ____
+	   None 
+	
+	   ### Parameters 
+	   ____
+	   None
+		
+	*/
 	Database(); 
-	/*  //RETURN VALUE FOR THE Database() FUNCTION:
-	    no return value since it is a constructor
+  
 
-		//FUNCTIONALITY 
-	    Initializes an empty Database
-
-		//PARAMETERS 
-		 Does not take any parameter
+	/*! 
 	
+		   ### Description
+		   ____
+		   Add a table to the database
+
+		   ### Return Value
+		   ____
+		   None 
+	
+		   ### Parameters 
+		   ____
+		   _insert_
+		       - Table to insert into database 
+
+		   _name_
+		       - Name of table within database
+		
 	*/
-	// Add table function that takes a single table and a name, and adds that table to the database
-	void add_table( string Table, String Attribute);
-	
-	/*  //RETURN VALUE FOR THE Database() FUNCTION:
-	    no return value 
+	void add_table(Table insert, String name);
+	  
 
-		//FUNCTIONALITY 
-	    Add the attribute "Attribute" to the database "Table"
-
-		//PARAMETERS 
-		 Takes a string "Table" which is the name of a Database. 
-		 Takes a string "Attribute" and adds that attritube to the database "Table"  
+	/*! 
 	
+		   ### Description
+		   ____
+		   Takes a table name and deletes it from the database
+
+		   ### Return Value
+		   ____
+		   None 
+	
+		   ### Parameters 
+		   ____
+		   _name_
+		       - Name of table to delete within database
+		
 	*/
+	void drop_table(String name);
+
+    /*! 
 	
+		   ### Description
+		   ____
+		   Returns a list of all the table names in the database
 
-	// Drop function that takes a table name and deletes it from the database
-	void drop_table(String Table);
-
-	/*  //RETURN VALUE FOR THE Database() FUNCTION:
-	    no return value 
-
-		//FUNCTIONALITY 
-	    Deletes the "Table" from the Database
-
-		//PARAMETERS 
-		 Takes a string "Table" which is the name of a Database instance 
-		   
+		   ### Return Value
+		   ____
+		   _list<String>_
+		       - List of all the table names database
 	
+		   ### Parameters 
+		   ____
+		   None
+		
 	*/
+	list<string>  list_table_names();
+	
+	 /*! 
+	
+		   ### Description
+		   ____
+		   Returns a list of all the tables in the database
+
+		   ### Return Value
+		   ____
+		   _list<Table>_
+		       - All of the tables in the database
+	
+		   ### Parameters 
+		   ____
+		   None
+		
+	*/
+	list<Table>  get_tables();
+
+	 /*! 
+	
+		   ### Description
+		   ____
+		   Locate tuples within the database
+
+		   ### Return Value
+		   ____
+		   None
+	
+		     ### Parameters 
+		   ____
+		   _SELECT_
+		       - A list of which attribute names to keep.
+			   - Passing a NULL list of attributes indicates all attributes will be kept
+
+		   _FROM_
+		       - Name of table within database
+
+		   _WHERE_
+			   - Conditions that should be present in the attributes.
+			   - Limited to comparisons using =, !=, >, < >=. <= of attributes that have the same type
+		
+	*/
+
+	Table query(list<String> SELECT, String FROM, String WHERE);
 	
 
-	// List table function that returns a list of all table names in the database
+	/*! 
+	
+		   ### Description
+		   ____
+		   Erase tuples from the database
 
-	// Get tables function that returns all the tables in the database
+		   ### Return Value
+		   ____
+		   None
+	
+		     ### Parameters 
+		   ____
+		   _SELECT_
+		       - A list of which attribute names to keep.
+			   - Passing a NULL list of attributes indicates all attributes will be kept
 
-	// Query Function
+		   _DELETE_
+		       - Name of table containing tuples to be deleted within database
 
-	// Delete command. Should follow that of the query command, except that instead of returning a table, 
-	// the table in the FROM portion has the apporopriate tuples deleted
+		   _WHERE_
+			   - Conditions that should be present in the attributes.
+			   - Limited to comparisons using =, !=, >, < >=. <= of attributes that have the same type
+		
+	*/
+	void erase(list<String> SELECT, String DELETE, String WHERE);
 
-	// Update command. Takes a table name, a WHERE clause (as in the query command), and SET clause 
-	// Set clause should be able to reference attributes of the table, and set them to values that are either a constant or 
-	// (in the case integers and floats) a computed function on attributed values (from that table)/ The operations +,-,*, and / should be supported
+	/*! 
+	
+		   ### Description
+		   ____
+		   Deconstructor for Database
 
-private: 
-
+		   ### Return Value
+		   ____
+		   None
+	
+		     ### Parameters 
+		   ____
+		   None
+		
+	*/
+	~Database();
 
 };
 
