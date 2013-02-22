@@ -1,9 +1,9 @@
 #include "Record.h"
+#include "std_lib_facilities.h"
 #include <iostream>
 #include <vector>
 #include <string>
 
-using namespace std;
 
 Record::Record(vector<string> tuple)
 {      

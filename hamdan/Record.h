@@ -11,8 +11,9 @@
 
 #include <iostream>
 #include <vector>
+#include <string>
+#include "std_lib_facilities.h"
 
-using namespace std;
 
 class Record {
 	
@@ -24,7 +25,7 @@ public:
 
 	/*! 
 	
-	   ### Description 
+	   ### Description                                                                                                                                  
 	   ____ 
 		Create a record (tuple) where each from a list of String types, where each String is an entry. This constructor allows for an arbitary amount of entries.
 	
