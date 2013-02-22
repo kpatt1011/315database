@@ -50,7 +50,7 @@ public:
 	*/
 
 	template <typename Type>
-	Table( map<String,Type> attributes  );
+	Table( map<String,Type> attributes  ){};
 
 	/*! 
 	
@@ -74,7 +74,7 @@ public:
 		
 	*/
 	template <typename Type>
-	void add_column(String name, Type t);
+	void add_column(String name, Type t) {};
 
 	
 		/*! 
@@ -126,8 +126,8 @@ public:
 	   ____
 	   None
 	*/
-	template <typename Type>
-	map< String, Type > get_columns();
+	template<typename Type>
+	map<String,Type> get_columns() { return NULL; };
 
 	/*! 
 	
@@ -260,7 +260,7 @@ public:
 		- Name of column to find minimum entry from
 	*/
 	template <typename Type>
-	Type entry_min(String column_name);
+	Type entry_min(String column_name){};
 
 	/*! 
 	
@@ -279,7 +279,7 @@ public:
 		- Name of column to find maximum entry from
 	*/
 	template <typename Type>
-	Type entry_max(String column_name);
+	Type entry_max(String column_name){};
 
 	/*! 
 	
@@ -296,7 +296,7 @@ public:
 	   None
 		
 	*/
-	~Table()
+	~Table();
 
 	
 };

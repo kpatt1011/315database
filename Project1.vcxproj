@@ -19,7 +19,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v100</PlatformToolset>
+    <PlatformToolset>v110</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -41,7 +41,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Program Files %28x86%29\Microsoft Visual Studio 10.0\VC\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\Keith\Documents\csce315\315database;C:\Users\Keith\Documents\csce315\315database\boost\test;C:\Program Files %28x86%29\Microsoft Visual Studio 10.0\VC\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Program Files %28x86%29\Microsoft Visual Studio 10.0\VC\lib;$(LibraryPath)</LibraryPath>
     <ReferencePath>C:\Program Files %28x86%29\Microsoft Visual Studio 10.0\VC\bin;$(ReferencePath)</ReferencePath>
   </PropertyGroup>
@@ -56,6 +56,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>C:\Users\Keith\Documents\csce315\315database\boost\test;C:\Users\Keith\Documents\csce315\315database;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -83,8 +84,10 @@
     <ClCompile Include="Database.cpp" />
     <ClCompile Include="Record.cpp" />
     <ClCompile Include="Table.cpp" />
+    <ClCompile Include="testAPI.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="boost\test\unit_test.hpp" />
     <ClInclude Include="Database.h" />
     <ClInclude Include="Record.h" />
     <ClInclude Include="std_lib_facilities.h" />

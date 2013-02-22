@@ -1,9 +1,188 @@
-﻿Build started 2/13/2013 3:32:01 PM.
-     1>Project "C:\Users\Keith\Documents\csce315\315database\Project1.vcxproj" on node 2 (build target(s)).
-     1>InitializeBuildStatus:
-         Touching "Debug\Project1.unsuccessfulbuild".
-       ClCompile:
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _WINDLL /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Database.cpp Record.cpp Table.cpp
+﻿Build started 2/20/2013 2:20:57 PM.
+     1>Project "C:\Users\Keith\Documents\csce315\315database\Project1.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /IC:\Users\Keith\Documents\csce315\315database\boost\test /IC:\Users\Keith\Documents\csce315\315database /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _WINDLL /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Database.cpp Table.cpp testAPI.cpp
+         testAPI.cpp
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(35): error C3867: 'Record::get_size': function call missing argument list; use '&Record::get_size' to create a pointer to member
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(35): error C2446: '==' : no conversion from 'int' to 'int (__thiscall Record::* )(void)'
+                 There are no conversions from integral values to pointer-to-member values
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(35): error C2040: '==' : 'int (__thiscall Record::* )(void)' differs in levels of indirection from 'int'
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(36): error C3867: 'Record::get_size': function call missing argument list; use '&Record::get_size' to create a pointer to member
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(50): error C3867: 'Record::get_size': function call missing argument list; use '&Record::get_size' to create a pointer to member
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(50): error C2446: '==' : no conversion from 'int' to 'int (__thiscall Record::* )(void)'
+                 There are no conversions from integral values to pointer-to-member values
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(50): error C2040: '==' : 'int (__thiscall Record::* )(void)' differs in levels of indirection from 'int'
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(83): error C2783: 'std::map<String,Type> Table::get_columns(void)' : could not deduce template argument for 'Type'
+                 c:\users\keith\documents\csce315\315database\table.h(130) : see declaration of 'Table::get_columns'
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(84): error C2783: 'std::map<String,Type> Table::get_columns(void)' : could not deduce template argument for 'Type'
+                 c:\users\keith\documents\csce315\315database\table.h(130) : see declaration of 'Table::get_columns'
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(87): error C2783: 'std::map<String,Type> Table::get_columns(void)' : could not deduce template argument for 'Type'
+                 c:\users\keith\documents\csce315\315database\table.h(130) : see declaration of 'Table::get_columns'
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(144): error C2783: 'Type Table::entry_max(String)' : could not deduce template argument for 'Type'
+                 c:\users\keith\documents\csce315\315database\table.h(282) : see declaration of 'Table::entry_max'
+                 c:\users\keith\documents\csce315\315database\table.h(282) : see declaration of 'Table::entry_max'
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(145): error C2783: 'Type Table::entry_max(String)' : could not deduce template argument for 'Type'
+                 c:\users\keith\documents\csce315\315database\table.h(282) : see declaration of 'Table::entry_max'
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(146): error C2783: 'Type Table::entry_min(String)' : could not deduce template argument for 'Type'
+                 c:\users\keith\documents\csce315\315database\table.h(263) : see declaration of 'Table::entry_min'
+                 c:\users\keith\documents\csce315\315database\table.h(263) : see declaration of 'Table::entry_min'
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(147): error C2783: 'Type Table::entry_min(String)' : could not deduce template argument for 'Type'
+                 c:\users\keith\documents\csce315\315database\table.h(263) : see declaration of 'Table::entry_min'
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(149): error C2371: 'testMap' : redefinition; different basic types
+                 c:\users\keith\documents\csce315\315database\testapi.cpp(64) : see declaration of 'testMap'
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(149): error C2783: 'std::map<String,Type> Table::get_columns(void)' : could not deduce template argument for 'Type'
+                 c:\users\keith\documents\csce315\315database\table.h(130) : see declaration of 'Table::get_columns'
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(153): error C2783: 'std::map<String,Type> Table::get_columns(void)' : could not deduce template argument for 'Type'
+                 c:\users\keith\documents\csce315\315database\table.h(130) : see declaration of 'Table::get_columns'
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(178): error C2783: 'std::map<String,Type> Table::get_columns(void)' : could not deduce template argument for 'Type'
+                 c:\users\keith\documents\csce315\315database\table.h(130) : see declaration of 'Table::get_columns'
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(181): error C3867: 'Table::entry_count': function call missing argument list; use '&Table::entry_count' to create a pointer to member
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(181): error C2446: '==' : no conversion from 'int' to 'int (__thiscall Table::* )(String)'
+                 There are no conversions from integral values to pointer-to-member values
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(181): error C2040: '==' : 'int (__thiscall Table::* )(String)' differs in levels of indirection from 'int'
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(182): error C3867: 'std::_Tree<_Traits>::size': function call missing argument list; use '&std::_Tree<_Traits>::size' to create a pointer to member
+                 with
+                 [
+                     _Traits=std::_Tmap_traits<String,String,std::less<String>,std::allocator<std::pair<const String,String>>,false>
+                 ]
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(182): error C2446: '==' : no conversion from 'int' to 'unsigned int (__thiscall std::_Tree<_Traits>::* )(void) const'
+                 with
+                 [
+                     _Traits=std::_Tmap_traits<String,String,std::less<String>,std::allocator<std::pair<const String,String>>,false>
+                 ]
+                 There are no conversions from integral values to pointer-to-member values
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(182): error C2040: '==' : 'unsigned int (__thiscall std::_Tree<_Traits>::* )(void) const' differs in levels of indirection from 'int'
+                 with
+                 [
+                     _Traits=std::_Tmap_traits<String,String,std::less<String>,std::allocator<std::pair<const String,String>>,false>
+                 ]
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(187): error C3867: 'std::list<_Ty>::empty': function call missing argument list; use '&std::list<_Ty>::empty' to create a pointer to member
+                 with
+                 [
+                     _Ty=std::string
+                 ]
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(187): warning C4805: '==' : unsafe mix of type 'bool (__thiscall std::list<_Ty>::* )(void) const' and type 'bool' in operation
+                 with
+                 [
+                     _Ty=std::string
+                 ]
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(187): error C2446: '==' : no conversion from 'int' to 'bool (__thiscall std::list<_Ty>::* )(void) const'
+                 with
+                 [
+                     _Ty=std::string
+                 ]
+                 There are no conversions from integral values to pointer-to-member values
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(187): error C2040: '==' : 'bool (__thiscall std::list<_Ty>::* )(void) const' differs in levels of indirection from 'int'
+                 with
+                 [
+                     _Ty=std::string
+                 ]
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(188): error C3867: 'std::list<_Ty>::empty': function call missing argument list; use '&std::list<_Ty>::empty' to create a pointer to member
+                 with
+                 [
+                     _Ty=Table
+                 ]
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(188): warning C4805: '==' : unsafe mix of type 'bool (__thiscall std::list<_Ty>::* )(void) const' and type 'bool' in operation
+                 with
+                 [
+                     _Ty=Table
+                 ]
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(188): error C2446: '==' : no conversion from 'int' to 'bool (__thiscall std::list<_Ty>::* )(void) const'
+                 with
+                 [
+                     _Ty=Table
+                 ]
+                 There are no conversions from integral values to pointer-to-member values
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(188): error C2040: '==' : 'bool (__thiscall std::list<_Ty>::* )(void) const' differs in levels of indirection from 'int'
+                 with
+                 [
+                     _Ty=Table
+                 ]
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(193): error C3867: 'std::list<_Ty>::size': function call missing argument list; use '&std::list<_Ty>::size' to create a pointer to member
+                 with
+                 [
+                     _Ty=std::string
+                 ]
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(193): error C2446: '==' : no conversion from 'int' to 'unsigned int (__thiscall std::list<_Ty>::* )(void) const'
+                 with
+                 [
+                     _Ty=std::string
+                 ]
+                 There are no conversions from integral values to pointer-to-member values
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(193): error C2040: '==' : 'unsigned int (__thiscall std::list<_Ty>::* )(void) const' differs in levels of indirection from 'int'
+                 with
+                 [
+                     _Ty=std::string
+                 ]
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(194): error C3867: 'std::list<_Ty>::size': function call missing argument list; use '&std::list<_Ty>::size' to create a pointer to member
+                 with
+                 [
+                     _Ty=Table
+                 ]
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(194): error C2446: '==' : no conversion from 'int' to 'unsigned int (__thiscall std::list<_Ty>::* )(void) const'
+                 with
+                 [
+                     _Ty=Table
+                 ]
+                 There are no conversions from integral values to pointer-to-member values
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(194): error C2040: '==' : 'unsigned int (__thiscall std::list<_Ty>::* )(void) const' differs in levels of indirection from 'int'
+                 with
+                 [
+                     _Ty=Table
+                 ]
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(200): error C3867: 'Database::erase': function call missing argument list; use '&Database::erase' to create a pointer to member
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(205): error C3867: 'std::list<_Ty>::size': function call missing argument list; use '&std::list<_Ty>::size' to create a pointer to member
+                 with
+                 [
+                     _Ty=std::string
+                 ]
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(206): error C3867: 'std::list<_Ty>::size': function call missing argument list; use '&std::list<_Ty>::size' to create a pointer to member
+                 with
+                 [
+                     _Ty=Table
+                 ]
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(207): error C2086: 'Table testTable1' : redefinition
+                 c:\users\keith\documents\csce315\315database\testapi.cpp(75) : see declaration of 'testTable1'
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(208): error C2086: 'Table testTable2' : redefinition
+                 c:\users\keith\documents\csce315\315database\testapi.cpp(71) : see declaration of 'testTable2'
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(213): error C3867: 'std::list<_Ty>::size': function call missing argument list; use '&std::list<_Ty>::size' to create a pointer to member
+                 with
+                 [
+                     _Ty=std::string
+                 ]
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(213): error C2446: '==' : no conversion from 'int' to 'unsigned int (__thiscall std::list<_Ty>::* )(void) const'
+                 with
+                 [
+                     _Ty=std::string
+                 ]
+                 There are no conversions from integral values to pointer-to-member values
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(213): error C2040: '==' : 'unsigned int (__thiscall std::list<_Ty>::* )(void) const' differs in levels of indirection from 'int'
+                 with
+                 [
+                     _Ty=std::string
+                 ]
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(214): error C3867: 'std::list<_Ty>::size': function call missing argument list; use '&std::list<_Ty>::size' to create a pointer to member
+                 with
+                 [
+                     _Ty=Table
+                 ]
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(214): error C2446: '==' : no conversion from 'int' to 'unsigned int (__thiscall std::list<_Ty>::* )(void) const'
+                 with
+                 [
+                     _Ty=Table
+                 ]
+                 There are no conversions from integral values to pointer-to-member values
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(214): error C2040: '==' : 'unsigned int (__thiscall std::list<_Ty>::* )(void) const' differs in levels of indirection from 'int'
+                 with
+                 [
+                     _Ty=Table
+                 ]
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(215): error C3867: 'std::list<_Ty>::begin': function call missing argument list; use '&std::list<_Ty>::begin' to create a pointer to member
+                 with
+                 [
+                     _Ty=std::string
+                 ]
+     1>c:\users\keith\documents\csce315\315database\testapi.cpp(219): error C2143: syntax error : missing ';' before '}'
          Table.cpp
      1>c:\users\keith\documents\csce315\315database\table.h(53): error C2061: syntax error : identifier 'map'
      1>c:\users\keith\documents\csce315\315database\table.h(130): error C2143: syntax error : missing ';' before '<'
@@ -11,35 +190,19 @@
      1>c:\users\keith\documents\csce315\315database\table.h(130): error C2238: unexpected token(s) preceding ';'
      1>c:\users\keith\documents\csce315\315database\table.h(130): error C2988: unrecognizable template declaration/definition
      1>c:\users\keith\documents\csce315\315database\table.h(130): error C2059: syntax error : '<'
-     1>c:\users\keith\documents\csce315\315database\table.h(147): error C2238: unexpected token(s) preceding ';'
-     1>c:\users\keith\documents\csce315\315database\table.h(302): error C2143: syntax error : missing ';' before '}'
      1>c:\users\keith\documents\csce315\315database\table.h(302): warning C4520: 'Table' : multiple default constructors specified
-     1>c:\users\keith\documents\csce315\315database\table.cpp(17): error C2143: syntax error : missing ';' before '<'
-     1>c:\users\keith\documents\csce315\315database\table.cpp(17): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-     1>c:\users\keith\documents\csce315\315database\table.cpp(17): error C2988: unrecognizable template declaration/definition
-     1>c:\users\keith\documents\csce315\315database\table.cpp(17): error C2059: syntax error : '<'
-     1>c:\users\keith\documents\csce315\315database\table.cpp(17): error C2039: 'get_columns' : is not a member of 'Table'
+     1>c:\users\keith\documents\csce315\315database\table.cpp(15): error C2511: 'int Table::get_size(void)' : overloaded member function not found in 'Table'
                  c:\users\keith\documents\csce315\315database\table.h(12) : see declaration of 'Table'
-     1>c:\users\keith\documents\csce315\315database\table.cpp(20): error C2039: 'get_size' : is not a member of 'Table'
+     1>c:\users\keith\documents\csce315\315database\table.cpp(18): error C2511: 'Record Table::get_record_at(int)' : overloaded member function not found in 'Table'
                  c:\users\keith\documents\csce315\315database\table.h(12) : see declaration of 'Table'
-     1>c:\users\keith\documents\csce315\315database\table.cpp(20): error C2143: syntax error : missing ';' before '{'
-     1>c:\users\keith\documents\csce315\315database\table.cpp(20): error C2447: '{' : missing function header (old-style formal list?)
-     1>c:\users\keith\documents\csce315\315database\table.cpp(23): error C2511: 'Record Table::get_record_at(int)' : overloaded member function not found in 'Table'
+     1>c:\users\keith\documents\csce315\315database\table.cpp(21): error C2511: 'void Table::rename_column(String,String)' : overloaded member function not found in 'Table'
                  c:\users\keith\documents\csce315\315database\table.h(12) : see declaration of 'Table'
-     1>c:\users\keith\documents\csce315\315database\table.cpp(26): error C2511: 'void Table::rename_column(String,String)' : overloaded member function not found in 'Table'
+     1>c:\users\keith\documents\csce315\315database\table.cpp(24): error C2511: 'Table Table::cross_join(Table,Table)' : overloaded member function not found in 'Table'
                  c:\users\keith\documents\csce315\315database\table.h(12) : see declaration of 'Table'
-     1>c:\users\keith\documents\csce315\315database\table.cpp(29): error C2511: 'Table Table::cross_join(Table,Table)' : overloaded member function not found in 'Table'
+     1>c:\users\keith\documents\csce315\315database\table.cpp(27): error C2511: 'int Table::entry_sum(String)' : overloaded member function not found in 'Table'
                  c:\users\keith\documents\csce315\315database\table.h(12) : see declaration of 'Table'
-     1>c:\users\keith\documents\csce315\315database\table.cpp(32): error C2511: 'int Table::entry_sum(String)' : overloaded member function not found in 'Table'
+     1>c:\users\keith\documents\csce315\315database\table.cpp(30): error C2511: 'int Table::entry_count(String)' : overloaded member function not found in 'Table'
                  c:\users\keith\documents\csce315\315database\table.h(12) : see declaration of 'Table'
-     1>c:\users\keith\documents\csce315\315database\table.cpp(35): error C2511: 'int Table::entry_count(String)' : overloaded member function not found in 'Table'
-                 c:\users\keith\documents\csce315\315database\table.h(12) : see declaration of 'Table'
-     1>c:\users\keith\documents\csce315\315database\table.cpp(40): error C2244: 'Table::entry_min' : unable to match function definition to an existing declaration
-                 definition
-                 'Type Table::entry_min(String)'
-                 existing declarations
-                 'Type Table::entry_min(String)'
-         Record.cpp
          Database.cpp
      1>c:\users\keith\documents\csce315\315database\database.cpp(1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
      1>c:\users\keith\documents\csce315\315database\table.h(53): error C2061: syntax error : identifier 'map'
@@ -48,12 +211,10 @@
      1>c:\users\keith\documents\csce315\315database\table.h(130): error C2238: unexpected token(s) preceding ';'
      1>c:\users\keith\documents\csce315\315database\table.h(130): error C2988: unrecognizable template declaration/definition
      1>c:\users\keith\documents\csce315\315database\table.h(130): error C2059: syntax error : '<'
-     1>c:\users\keith\documents\csce315\315database\table.h(147): error C2238: unexpected token(s) preceding ';'
-     1>c:\users\keith\documents\csce315\315database\table.h(302): error C2143: syntax error : missing ';' before '}'
      1>c:\users\keith\documents\csce315\315database\table.h(302): warning C4520: 'Table' : multiple default constructors specified
          Generating Code...
-     1>Done Building Project "C:\Users\Keith\Documents\csce315\315database\Project1.vcxproj" (build target(s)) -- FAILED.
+     1>Done Building Project "C:\Users\Keith\Documents\csce315\315database\Project1.vcxproj" (Build target(s)) -- FAILED.
 
 Build FAILED.
 
-Time Elapsed 00:00:02.61
+Time Elapsed 00:00:04.52
