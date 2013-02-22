@@ -18,7 +18,7 @@ Record::Record(vector<string> tuple)
 string Record::get_entry(int index)
 {
       
-
+	// Throw Out of Bounds Exception 
 	if (index >= Tupel.size())
 	 {
 	   cout<<" INDEX OUT OF BOUND"<<endl;        
@@ -30,14 +30,31 @@ string Record::get_entry(int index)
 	}
 }
 
-int main() 
-{ vector<string> str;
+void Record::replace_entry(int index, string replacement)
+{
+       
+	// Throw Out of Bounds Exception 
+	if (index >= Tupel.size())
+	 {
+	   cout<<" INDEX OUT OF BOUND"<<endl;        
+	 }
 
-str.push_back("A");
-str.push_back("B");
-str.push_back("CDE");
-   
-Record R(str);
-	cout<<R.get_entry(2)<<endl;
- system("pause");
+	//Change the value of attribute at index position 
+	else
+	{       
+	      Tupel[index] = replacement;
+	}      
+
 }
+
+// Size of the Tuple
+int Record::get_size()
+{
+   return Tupel.size();
+}
+
+//Empty Destructor
+Record::~Record()
+{}
+
+
