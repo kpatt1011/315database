@@ -258,8 +258,8 @@ public:
 	   _ column_name _
 		- Name of column to find minimum entry from
 	*/
-	template <typename Type>
-	Type entry_min(String column_name){};
+	
+	String entry_min(String column_name);
 
 	/*! 
 	
@@ -269,7 +269,7 @@ public:
 	
 	   ### Return Value
 	   ____
-		_Type_
+		_String_
 			- The value of the maximum entry in the column
 
 	   ### Parameters
@@ -277,8 +277,7 @@ public:
 	   _ column_name _
 		- Name of column to find maximum entry from
 	*/
-	template <typename Type>
-	Type entry_max(String column_name){};
+	String entry_max(String column_name);
 
 	/*! 
 	

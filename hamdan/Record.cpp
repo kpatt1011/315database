@@ -5,7 +5,7 @@
 #include <string>
 
 
-Record::Record(vector<string> tuple)
+Record::Record(vector<String> tuple)
 {      
 	// Intialize the Record with Tuple
 	for (int i =0 ;i<tuple.size(); i++)

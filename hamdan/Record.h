@@ -41,7 +41,7 @@ public:
 		- List of entries to be in tuple
 
 	*/
-	Record(vector<string> Single_Tuple);
+	Record(vector<String> Single_Tuple);
 
 
 	/*! 

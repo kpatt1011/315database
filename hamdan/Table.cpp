@@ -15,7 +15,7 @@ int Table::get_size(){
 }
 
 Record Table::get_record_at(int index) {
-	vector<string> a;
+	vector<String> a;
 	a.push_back("Test");
 
 	Record ret (a);
@@ -41,6 +41,14 @@ int Table::entry_count(String column_name) {
 map<String,String> Table::get_columns() {
 	map<String,String> testMap;
 	return testMap;
+}
+
+String Table::entry_min(String column_name) {
+	return "";
+}
+
+String Table::entry_max(String column_name) {
+	return "";
 }
 
 Table::~Table(){
