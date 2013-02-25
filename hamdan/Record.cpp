@@ -4,18 +4,14 @@
 #include <vector>
 #include <string>
 
+using namespace std;
 
 Record::Record(vector<String> tuple)
 {      
-	// Intialize the Record with Tuple
-	for (int i =0 ;i<tuple.size(); i++)
-
-		{
-			Tupel.push_back(tuple[i]);
-		}
+          Tupel = tuple;	
 }
 
-string Record::get_entry(int index)
+String Record::get_entry(int index)
 {
       
 	// Throw Out of Bounds Exception 
@@ -30,11 +26,16 @@ string Record::get_entry(int index)
 	}
 }
 
-void Record::replace_entry(int index, string replacement)
+void Record::replace_entry(int index, String replacement)
 {
-       
+	//IF JUST WANTS TO ADD NULL IN NEW COLUMN
+    if ( index - Tupel.size() == 0)
+	{
+	   Tupel.push_back(replacement);
+	}
+
 	// Throw Out of Bounds Exception 
-	if (index >= Tupel.size())
+   else	if (index > Tupel.size())
 	 {
 	   cout<<" INDEX OUT OF BOUND"<<endl;        
 	 }
@@ -57,4 +58,27 @@ int Record::get_size()
 Record::~Record()
 {}
 
+
+void Record::Copy(Record R)
+
+{    int length = R.get_size() -1 ;
+	 string s;
+	for (int i=0 ; i<length ; i++)
+	{
+	   s = R.get_entry(i);
+	}
+ 
+}
+
+Record& Record::operator=( const Record & rhs)
+{
+	// CASE: SELF ASSIGNMENT
+   if (this == &rhs)
+   {return *this;}
+
+   else
+   {
+        Tupel = rhs.Tupel;
+   }
+}
 

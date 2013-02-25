@@ -8,26 +8,28 @@
 	- Records are not aware of the table they are being stored in.
 	- Records are not aware of the actual type of each of their entries
 */
-
+#include "std_lib_facilities.h"
 #include <iostream>
 #include <vector>
-#include <string>
-#include "std_lib_facilities.h"
 
 #ifndef RECORD_H
 #define RECORD_H
 
+using namespace std;
+
 class Record {
 	
 private:
-	  vector<string> Tupel;
+	  vector<String> Tupel;
 
+	  
 public:
 
+	void Copy(Record R);
 
 	/*! 
 	
-	   ### Description                                                                                                                                  
+	   ### Description 
 	   ____ 
 		Create a record (tuple) where each from a list of String types, where each String is an entry. This constructor allows for an arbitary amount of entries.
 	
@@ -60,7 +62,7 @@ public:
 	   _index_
 		- The index of the desired entry to obtain
 	*/
-	string get_entry(int index);
+	String get_entry(int index);
 
 	/*! 
 	
@@ -81,7 +83,7 @@ public:
 	   _replacement_
 		- The String value to replace the current entry at index
 	*/
-	void replace_entry(int index, string replacement);
+	void replace_entry(int index, String replacement);
 
 	/*! 
 	
@@ -116,9 +118,24 @@ public:
 	*/
 	~Record();
 
+//Overlaoding Assignment Operator
+// Not to be used by the application user
+
+Record& operator=( const Record & rhs);
+
+//Getter for vector of Tuple
+vector<String> Get_Tuple()
+{return Tupel;}
+	
+//ERASE A VALUE IN A VECTOR
+void DELETE (int index)
+{  if (index >= Tupel.size()) {cout<<"INDEX OUT OF BOUNDS"<<endl;}
+else {Tupel.erase(Tupel.begin() + index);}
+}
+
 
 };
 
+
+
 #endif
-
-

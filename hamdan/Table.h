@@ -12,7 +12,19 @@
 using namespace std;
 class Table {
 
+		map<string, string> Data;
+	list<Record> Row; 
+	std::string Key;
+	std::string Column_Attributes;
+
+	//Private Cross Join Function
+	Table Cross(Table a, Table b);
+
 public:
+
+	int Column_size();
+
+	void Print();
 		
 	/*! 
 	
@@ -50,7 +62,7 @@ public:
 		
 	*/
 
-	Table( map<String,String> attributes  ){};
+	Table( map<String,String> attributes  );
 
 	/*! 
 	
@@ -73,8 +85,7 @@ public:
 
 		
 	*/
-	template <typename Type>
-	void add_column(String name, Type t) {};
+	void add_column(String name, String t);
 
 	
 		/*! 
@@ -295,6 +306,8 @@ public:
 		
 	*/
 	~Table();
+
+	
 
 	
 };
