@@ -1,302 +1,70 @@
-#include "std_lib_facilities.h"
 #include "Record.h"
+#include <list>
+#include <iostream>
 #include <map>
 
-#ifndef TABLE_H
-#define TABLE_H
 
-//! Table Class
-/*!
-	Used to implement a table (rows, columns) within a database. 
-*/
 using namespace std;
+
+
 class Table {
 
-public:
-		
-	/*! 
+private:
+	map<string, string> Data;
+	list<Record> Row; 
+	std::string Key;
+	std::string Column_Attributes;
 	
-	   ### Description
-	   ____
-	   Creates an empty table with no rows or columns
 
-	   ### Return Value
-	   ____
-	   None 
+	//Private Cross Join Function
+	Table Cross(Table a, Table b);
 	
-	   ### Parameters 
-	   ____
-	   None
-		
-	*/
+	
+
+
+public:
+	// Need constructors for rows and columns. And empty constructor
 	Table();
 
-	/*! 
+	void Print();
 	
-	   ### Description 
-	   ____
-	   Constructor that takes a map of attribute names and their associated types
-	
-	   ### Return Value
-	   ____
-	   None 
-	   
-	   ### Parameters
-	   ____
-	    _ Attributes_
-		       - map<name,attribute_type> 
-			   - name is the name of each attribute. Each one must be unique
-			   - attribute_type is the the type of the associated attribute (Integer, String, Float, Date, Time)
-		
-	*/
+	// Constructor to take a list of attribute names and types
+	Table (map< string, string > attributes);
 
-	Table( map<String,String> attributes  ){};
+	// Add function that takes in a single attribute name and type 
+	// and adds a column to the end of the table with that new 
+	// attribute. Any entries currently in the table should get NULL
+	// for that entry
+	void add_column (string name, string t);
 
-	/*! 
-	
-	   ### Description 
-	   ____
-	   Takes in a single attribute (column) name and type. Add new column to end of table.
-	   Any entries currently in the table get NULL for that entry
-	
-	   ### Return Value
-	   ____
-	   None 
-	   
-	   ### Parameters
-	   ____
-			_name_
-		       - The name of the new column
+	// A delete function that takes an attribute name and deletes it from the table
+	void 	delete_column (string name);
 
-			_t_
-		       - Type of new column (Integer, String, Float, Date, Time)
+	// An insert command that takes a record and adds it to the table
+	void 	insert_row (Record row);
+	
+	// A get attributes command that returns a list of the attributes and types for that table
 
-		
-	*/
-	template <typename Type>
-	void add_column(String name, Type t) {};
+	// A get size command that returns the number of records in the table
+	int 	get_size ();
 
-	
-		/*! 
-	
-	   ### Description 
-	   ____
-	   Insert a new record (a.k.a. row) into the table.
-	
-	   ### Return Value
-	   ____
-	   None 
-	   
-	   ### Parameters
-	   ____
-			_row_
-		       - A record (tuple) to be inserted as a new row in the database
-	*/
-	void insert_row (Record row);
+	// An iterator of some sort that can be used to return individual records from the table
+	Record 	get_record_at(int index);
 
-	/*! 
-	
-	   ### Description 
-	   ____
-	   Takes an attribute (column) name and deletes it from the table
-	
-	   ### Return Value
-	   ____
-	   None 
-	   
-	   ### Parameters
-	   ____
-			_name_
-		       - The name of the attribute (column) to be deleted
-	*/
-	void delete_column (String name); 
+	// A rename attribute command that takes two names, and replaces the name for the attribute given by the first name with the second name
+	void 	rename_column (string name1, string name2);
 
-	/*! 
+	// A cross join command that takes two tables as input and produces one table as output
+	Table 	cross_join (Table a, Table b);
+	// Routines that take a single attribute name as input, and compute the following 
+	// sum, count (counts non-null entries only), Min, MAx
+	int 	entry_count (string column_name);
 	
-	   ### Description 
-	   ____ 
-	   Returns a map of all the columns (name and associated type) in the database. 
-	
-	   ### Return Value
-	   ____
-	   _map<name,type>_
-		       - A map of all the columns in the database. Organized with column names as the key values, pointing to their respective types
-	   
-	   ### Parameters
-	   ____
-	   None
-	*/
-	std::map<String,String> get_columns();
+	int 	entry_sum (string column_name);
 
-	/*! 
-	
-	   ### Description 
-	   ____ 
-	   Returns the number of records in the table
-	
-	   ### Return Value
-	   ____
-	   _Size_
-		       - Number of records in the table. Returned as an int
-	   
-	   ### Parameters
-	   ____
-	   None
-	*/
-	int get_size();
+	string 	entry_min (string column_name);
 
-	/*! 
-	
-	   ### Description 
-	   ____ 
-	   Returns the record at the given row number in the database. Used with get_size and a for loop it is possible to iterate all of the records in the database. 
-	   
-	
-	   ### Return Value
-	   ____
-	   _Record_
-		       - The record stored at the given indexed row
-	   
-	   ### Parameters
-	   ____
-	   _index_
-		- The int row index of the record to be retrived.
-	*/
-	Record get_record_at(int index);
+   double 	entry_max (string column_name);
 
-	/*! 
-	
-	   ### Description 
-	   ____ 
-		Changes the name of a current attribute (column) in the database.	   
-	
-	   ### Return Value
-	   ____
-		None
-	   
-	   ### Parameters
-	   ____
-	   _name1_
-		- The original name of the column
-
-	   _name2_
-		- The new name of the column
-	*/
-	void rename_column(String name1, String name2);
-
-
-	/*! 
-	
-	   ### Description 
-	   ____ 
-		Cross join two tables.	   
-	
-	   ### Return Value
-	   ____
-		_Table_
-			- New Table resulting from the cross join of table a and b
-	   
-	   ### Parameters
-	   ____
-	   _a_
-		- Table to be cross joined
-
-	   _b_
-		- Table to be cross joined
-	*/
-	Table cross_join(Table a, Table b);
-
-	/*! 
-	
-	   ### Description 
-	   ____ 
-		Returns the sum of all the entries in a given column
-	
-	   ### Return Value
-	   ____
-		_int_
-			- Sum of all column entries
-
-	   ### Parameters
-	   ____
-	   _ column_name _
-		- Name of column to sum entries from
-	*/
-	int entry_sum(String column_name);
-
-	/*! 
-	
-	   ### Description 
-	   ____ 
-		Counts the total number of entries in the column. (non-null entries only)   
-	
-	   ### Return Value
-	   ____
-		_int_
-			- Number of non-null entries in the column
-
-	   ### Parameters
-	   ____
-	   _ column_name _
-		- Name of column to count entries from
-	*/
-	int entry_count(String column_name);
-
-	/*! 
-	
-	   ### Description 
-	   ____ 
-		Returns the minimum entry in the column.   
-	
-	   ### Return Value
-	   ____
-		_Type_
-			- Value of the minimum entry in the column.
-
-	   ### Parameters
-	   ____
-	   _ column_name _
-		- Name of column to find minimum entry from
-	*/
-	
-	String entry_min(String column_name);
-
-	/*! 
-	
-	   ### Description 
-	   ____ 
-		Returns the maximum entry in the column. 
-	
-	   ### Return Value
-	   ____
-		_String_
-			- The value of the maximum entry in the column
-
-	   ### Parameters
-	   ____
-	   _ column_name _
-		- Name of column to find maximum entry from
-	*/
-	String entry_max(String column_name);
-
-	/*! 
-	
-	   ### Description
-	   ____
-	   Table Destructor
-
-	   ### Return Value
-	   ____
-	   None 
-	
-	   ### Parameters 
-	   ____
-	   None
-		
-	*/
-	~Table();
-
-	
+   int Column_size();
 };
-
-#endif

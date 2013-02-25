@@ -11,23 +11,22 @@
 
 #include <iostream>
 #include <vector>
-#include <string>
-#include "std_lib_facilities.h"
 
-#ifndef RECORD_H
-#define RECORD_H
+using namespace std;
 
 class Record {
 	
 private:
 	  vector<string> Tupel;
 
+	  
 public:
 
+	void Copy(Record R);
 
 	/*! 
 	
-	   ### Description                                                                                                                                  
+	   ### Description 
 	   ____ 
 		Create a record (tuple) where each from a list of String types, where each String is an entry. This constructor allows for an arbitary amount of entries.
 	
@@ -41,7 +40,7 @@ public:
 		- List of entries to be in tuple
 
 	*/
-	Record(vector<String> Single_Tuple);
+	Record(vector<string> Single_Tuple);
 
 
 	/*! 
@@ -116,9 +115,22 @@ public:
 	*/
 	~Record();
 
+//Overlaoding Assignment Operator
+// Not to be used by the application user
+
+Record& operator=( const Record & rhs);
+
+//Getter for vector of Tuple
+vector<string> Get_Tuple()
+{return Tupel;}
+	
+//ERASE A VALUE IN A VECTOR
+void DELETE (int index)
+{  if (index >= Tupel.size()) {cout<<"INDEX OUT OF BOUNDS"<<endl;}
+else {Tupel.erase(Tupel.begin() + index);}
+}
+
 
 };
-
-#endif
 
 

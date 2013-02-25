@@ -1,59 +1,472 @@
+
+
 #include "Table.h"
+//#include "Record.h"
+#include <iostream>
+#include <string>
+#include <vector>
+#include <list>
+#include <map>
+#include <sstream>  
+using namespace std;
 
-Table::Table() {
+//Non- parameter constructor
+Table::Table()
+{    
+	Key = "NULL";
+	Row;
+	Column_Attributes ="NULL";
+   
 }
 
-void Table::insert_row(Record row) {
+//Constructor with parameters
+Table::Table (map< string, string > attributes)
+{
+	
+	Key = "NULL";
+	Row;
+	int count = 0;
+	if (attributes.size() == 0)	{Column_Attributes = "NULL";}
+	else 
+	{   Column_Attributes = "(";
+	 for(map<string, string>::iterator it = attributes.begin(); it != attributes.end(); ++it) 
+	 {      
+             Column_Attributes += it->second; 
+		     Column_Attributes +=" ";
+			 Column_Attributes += it->first;
+             
+			 
+		     count++;
+			 if (count !=attributes.size()) {Column_Attributes +="," ;}                            
+	}
+	         Column_Attributes +=")"; 
+	}
+   
 }
 
-void Table::delete_column (String name) {
-}
+void Table::insert_row (Record row)
+{
+	// IF Table is empty i. e No columns than no tuple can be stored. 
+	// Columns have to be made first in order to fill them with values
+	if (Column_Attributes == "NULL")
+	{ cout<<"ERROR - FIRST UPDATE COLUMNS THAN TUPLES"<<endl;
+	}
+	
+	// Throw Error in case users tries to input value containing incorrect dimensions 
+	// AT all times, Table will have Square Dimensions
+	else if (row.get_size() != Column_size() )
+	{cout<<"ERROR - INCORRECT DIMENSIONS"<<endl;}
 
-
-int Table::get_size(){
-	return 0;
-}
-
-Record Table::get_record_at(int index) {
-	vector<String> a;
-	a.push_back("Test");
-
-	Record ret (a);
-	return ret;
-}
-
-void Table::rename_column (String name1, String name2) {
-}
-
-Table Table::cross_join(Table a, Table b) {
-	Table test;
-	return test;
-}
-
-int Table::entry_sum(String column_name) {
-	return 0;
-}
-
-int Table::entry_count(String column_name) {
-	return 0;
-}
-
-map<String,String> Table::get_columns() {
-	map<String,String> testMap;
-	return testMap;
-}
-
-String Table::entry_min(String column_name) {
-	return "";
-}
-
-String Table::entry_max(String column_name) {
-	return "";
-}
-
-Table::~Table(){
-
+	else 
+	{
+	  Row.push_back(row);
+	}
 }
 
 
+void Table::add_column (string name, string t)
+	{
+	    //CASE 1 = if table is empty . So inserting First column
+		 if (Column_Attributes == "NULL") 
+		 {
+		    Column_Attributes = "(" + t + " " + name + ")";
+		 // If column is empty then append the column with the type and name of the First Attribute
 
+		 }
+	
+	 // CASE 2 = THERE are already Existing Columns 
+		 else
+		 {           //CASE 2 (A) = NO TUPLES ARE PRESENT IN THE DATABASE
+		          int Temp = Column_Attributes.length() - 1; // Temp to store last character of the column
+				   	
+					if (Row.size() == 0)
+				  {
+				     if (Column_Attributes[Temp] == ')')
+					 {  
+					   Column_Attributes[Temp] = ',';
+					   Column_Attributes += t + ' ' + name + ')';
+					 }
+				  }
+		 
+		      //CASE 2(B) - IF THERE ARE TUPLES AS WELL THEN WE NEED TO PUT NULL IN EVERY TUPLE ENTRY FOR THE NEW COLUMN
+					else if (Row.size() > 0)
+					{
+					   //APPEND COLUMN 
+					 if (Column_Attributes[Temp] == ')')
+					 {  
+					   Column_Attributes[Temp] = ',';
+					   Column_Attributes += t + ' ' + name + ')';
+					 } 
+					
+					 int RowLength = Row.size();
+					vector<string> s;
+					for (int i=0; i < RowLength;i++)
+					 {   //Temporary recrod to hold and modify tuple from the list
+					     
+						 Record R_Temp(s); R_Temp= Row.front();
+						 Row.pop_front();
+					     int R_Temp_Size = R_Temp.get_size(); 
+						 R_Temp.replace_entry(R_Temp_Size, "NULL");	  
+					     Row.push_back(R_Temp);
+					}
+
+					}
+		 
+		 }
+	
+	}
+
+
+int Table::Column_size()
+{   //Columns will be of the format (Attribute 1, Attribute 2, Attribute 3 , ... , Attribut n) 
+	//Comma's will separate one attribute from the other
+
+	int size = 0;
+	//Function that Calculates the total Number of Columns
+	
+	//Return zero in case Table is Empty
+	if (Column_Attributes == "NULL") 
+	{  return size ;
+	} 
+
+	//Count Total Columns
+	else 
+	{        size = 1;
+	 	//Intialize size to 1 as there is atleast one attribute in the column
+		for (int i=0 ; i<Column_Attributes.length(); i++)
+		{   //Comma is an attribute separator. Hence for every ',' encountered increase the attribute size
+
+			if (Column_Attributes[i]== ',') {size++;}
+		}
+	}
+
+    return size;
+
+}
+
+int Table::get_size ()
+{
+	return Row.size();
+}
+
+Record Table::get_record_at(int index)
+{   // Dealing with NEGATIVE INDEX OR OUT OF BOUND INDEX
+	if ((index < 0) || (index >= Row.size())) 
+	{  cout<<"INDEX OUT OF BOUND" <<endl;
+	}
+
+	else
+	{    vector<string> vTemp;
+		Record Iterator(vTemp), TargetValue(vTemp);
+		for (int i=0; i<Row.size() ; i++)
+		{
+		     Iterator = Row.front();
+			 Row.pop_front();
+			 if (i == index) TargetValue = Iterator;
+			 Row.push_back(Iterator);
+		}
+		return TargetValue;
+	}
+
+}
+
+void Table::rename_column (string name1, string name2)
+{
+     int Name1Postion;   
+	 //Position of attribute name to be replaced;
+	 Name1Postion = Column_Attributes.find(name1);
+	 
+	 int LengthofName1= name1.length();
+	 //Total length of attribute to be replaced
+	 int RemainderStringPosition = Name1Postion + LengthofName1;
+     // Total length of attribute name1
+	 
+     
+	 string BeforeName1, AfterName1;
+	 AfterName1 = Column_Attributes.substr(RemainderStringPosition);
+	 //Column after name 1
+	 
+	 for (int i = 0 ; i < Name1Postion ; i++)
+	 {BeforeName1 += Column_Attributes[i];}
+       // Getting Column Before Name1   
+	 Column_Attributes = BeforeName1 + name2 + AfterName1;
+       //Make new column by Joining Previous Column before the name1 string with new attribute name2
+	   // and previously remainder of the string after name1
+}
+
+void 	Table::delete_column (string name)
+{
+	/*   ALGORITHM :
+	    1- GET COLUMN POSITION
+		2- MODIFY THE ATTRIBUTES TO REMOVE THE COLUMN
+		3- MODIFY THE ROWS TO REMOVE ENTRIES AT THAT POSITION
+	   */
+        int NamePostion;   
+	 //Position of attribute name to be deleted
+	 NamePostion =	Column_Attributes.find(name);
+	 
+	 int LengthofName= name.length();
+	 //Total length of attribute to be deleted
+	 int RemainderStringPosition = NamePostion + LengthofName;
+     // Total length of attribute name
+	 
+     
+	 string BeforeName, AfterName;
+	 int start = 0;
+	 for (int i = NamePostion; i>=0 ; i--)
+	 {
+	    if ((Column_Attributes[i] == ',') || (Column_Attributes[i] == '('))
+		{  start = i;
+		   break;
+		}
+	 }
+
+	 for (int i =0 ; i<=start ; i++)
+	 {
+	   BeforeName += Column_Attributes[i]; 
+	 }
+	 
+	 
+	 AfterName = Column_Attributes.substr(RemainderStringPosition+1);
+    
+	 int ColumnNumber = 0;
+	 for (int i =0 ; i<=start; i++)
+	 {
+	     if (Column_Attributes[i] == ',')  ColumnNumber++;
+	 }
+
+	
+	 vector<string>s;
+	 Record Temp(s);
+	 //Deleting the Column
+	 //Deleting the value in rows of that particular column
+	 for (int i =0; i<Row.size() ; i++)
+	 {
+	     Temp = Row.front();
+		 Row.pop_front();
+		 Temp.DELETE(ColumnNumber);
+		 Row.push_back(Temp);
+	 }
+	 
+	Column_Attributes = BeforeName + AfterName;
+}
+
+
+void Table::Print()
+{   
+	vector<string> t;
+	cout<<Column_Attributes<<endl;
+    Record Temp(t);
+	for (int i=0; i<Row.size() ; i++)
+	{
+	     Temp = Row.front();
+		 cout<<"( ";
+		 for (int j=0; j<Temp.get_size(); j++)
+		 {
+		  cout<<Temp.get_entry(j);
+		  if (j!= Temp.get_size()-1) cout<<" ,";
+		 }
+		 cout<<" ) " <<endl;
+		 Row.pop_front();
+		 Row.push_back(Temp);
+	}
+}
+
+//Wrapper Cross Join Function
+Table Table::cross_join (Table a, Table b)
+{
+	if (a.get_size() < b.get_size())
+	 return Cross(b,a);
+	else return Cross(a,b);
+}
+
+Table Table::Cross(Table a, Table b)
+{     //Initialize Table c;
+	  map<string, string> m;
+      Table c(m);
+	  //Adding all of Table A columns in Table C
+       for (int i = 0 ; i<a.Column_size(); i++)
+	   { 
+		   // c.add_column(a.getcolumn());
+	     
+	   }
+
+	    //Adding all of Table B columns in Table C
+       for (int i = 0 ; i<a.Column_size(); i++)
+	   { 
+		   // c.add_column(b.getcolumn());
+	     
+	   }
+
+
+	   return c;
+}
+
+int Table::entry_sum (string column_name)
+{
+       double sum = 0.00;
+		// Position of attribute to sum
+        int Postion =	Column_Attributes.find(column_name);
+
+		// Finding the number of appropriate column
+		int ColumnNumber = 0;
+		for (int i = 0 ; i<=Postion; i++)
+		{
+		  if (Column_Attributes[i] == ',') ColumnNumber++;
+		}
+     
+		// Traversing through the rows
+		vector<string> v;
+		Record Temp(v);
+		string convert;
+		for (int i = 0; i<Row.size() ; i++)
+		{   
+		   Temp = Row.front();
+		   if (Temp.get_entry(ColumnNumber) != "NULL") {convert =(Temp.get_entry(ColumnNumber)); sum += atof(convert.c_str());}
+		   Row.pop_front();
+		   Row.push_back(Temp);
+		}
+		return sum;
+}
+
+
+int Table::entry_count (string column_name)
+{
+	    int count = 0;
+		// Position of attribute to count
+        int Postion =	Column_Attributes.find(column_name);
+
+		// Finding the number of appropriate column
+		int ColumnNumber = 0;
+		for (int i = 0 ; i<=Postion; i++)
+		{
+		  if (Column_Attributes[i] == ',') ColumnNumber++;
+		}
+     
+		// Traversing through the rows
+		vector<string> v;
+		Record Temp(v);
+		
+		for (int i = 0; i<Row.size() ; i++)
+		{   
+		   Temp = Row.front();
+		   if (Temp.get_entry(ColumnNumber) != "NULL") {count++;}
+		   Row.pop_front();
+		   Row.push_back(Temp);
+		}
+		return count;
+}
+
+
+string 	Table::entry_min (string column_name)
+{
+	double Min = 9999.9999; // Sentinel Value
+	bool  Min_Exist = false; //In case if all entries are NULL
+		// Position of attribute to find min of
+        int Postion =	Column_Attributes.find(column_name);
+
+		// Finding the number of appropriate column
+		int ColumnNumber = 0;
+		for (int i = 0 ; i<=Postion; i++)
+		{
+		  if (Column_Attributes[i] == ',') ColumnNumber++;
+		}
+     
+		// Traversing through the rows
+		vector<string> v;
+		Record Temp(v);
+		string convert;
+		for (int i = 0; i<Row.size() ; i++)
+		{   
+		   Temp = Row.front();
+		   if (Temp.get_entry(ColumnNumber) != "NULL") 
+		   {
+		   Min_Exist = true;
+		   convert =(Temp.get_entry(ColumnNumber)); 
+		  if (Min > atof(convert.c_str())) Min =  atof(convert.c_str());
+		   }
+		   
+		   Row.pop_front();
+		   Row.push_back(Temp);
+		}
+		
+		if (Min_Exist == true)	 {std::stringstream s; s<< Min; return s.str();}
+	else cout<<"NO MINIMUM EXIST"<<endl;
+}
+
+string 	Table::entry_max (string column_name)
+{
+	double Max = -999999.9999; // Sentinel Value
+	bool  Max_Exist = false; //In case if all entries are NULL
+		// Position of attribute to find max of
+        int Postion =	Column_Attributes.find(column_name);
+
+		// Finding the number of appropriate column
+		int ColumnNumber = 0;
+		for (int i = 0 ; i<=Postion; i++)
+		{
+		  if (Column_Attributes[i] == ',') ColumnNumber++;
+		}
+     
+		// Traversing through the rows
+		vector<string> v;
+		Record Temp(v);
+		string convert;
+		for (int i = 0; i<Row.size() ; i++)
+		{   
+		   Temp = Row.front();
+		   if (Temp.get_entry(ColumnNumber) != "NULL") 
+		   {
+		   Max_Exist = true;
+		   convert =(Temp.get_entry(ColumnNumber)); 
+		  if (Max < atof(convert.c_str())) Max =  atof(convert.c_str());
+		   }
+		   
+		   Row.pop_front();
+		   Row.push_back(Temp);
+		}
+		
+	if (Max_Exist == true)	 {std::stringstream s; s<< Max; return s.str();}
+	else cout<<"NO MINIMUM EXIST"<<endl;
+}
+
+int main()
+{   map<string, string> m;
+	typedef pair <string, string> pair;
+	 m.insert( std::pair<string,string> ("COMPANY_NAME", "VARCHAR"));
+	m.insert(std::pair<string,string>("TICKER", "VARCHAR" ));
+	m.insert(std::pair<string,string>("STOCK_PRICE","FLOAT" ));
+	m.insert(std::pair<string,string>("EPS", "FLOAT"));
+	m.insert(std::pair<string,string>("COMPANY_LOCATION", "VARCHAR"));
+	
+	 Table T1(m);
+    vector<string> s,p,q;
+	s.push_back("APPLE");
+	s.push_back("AAPL");
+	s.push_back("322.21");
+	s.push_back("4.56");
+	s.push_back("SAN JOSE - CALIFORNIA");
+	p.push_back("MICROSOFT");
+	p.push_back("MSFT");
+	p.push_back("27.84");
+	p.push_back("2.90");
+	p.push_back("REDMOND - WASHINGTON");
+	q.push_back("GOOGLE");
+	q.push_back("GOOG");
+	q.push_back("525.65");
+	q.push_back("5.43");
+	q.push_back("SAN JOSE - CALIFORNIA");
+	
+	
+	Record r(s);
+	T1.insert_row(r);
+	r=p;
+	T1.insert_row(r);
+	r=q;
+	T1.insert_row(r);
+    T1.add_column("PEG","FLOAT");
+	
+	T1.Print();
+  // cout<<"MIN = "<<T1.entry_min("STOCK_PRICE");    
+ system("pause");
+}
