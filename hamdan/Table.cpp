@@ -1,7 +1,7 @@
 
 
 #include "Table.h"
-//#include "Record.h"
+#include "Record.h"
 #include <iostream>
 #include <String>
 #include <vector>
@@ -9,7 +9,6 @@
 #include <map>
 #include <sstream>  
 #include "std_lib_facilities.h"
-
 using namespace std;
 
 //Non- parameter constructor
@@ -24,7 +23,7 @@ Table::Table()
 //Constructor with parameters
 Table::Table (map< String, String > attributes)
 {
-	
+	Data = attributes;
 	Key = "NULL";
 	Row;
 	int count = 0;
@@ -65,6 +64,10 @@ void Table::insert_row (Record row)
 	}
 }
 
+map<String, String > Table::get_columns ()
+{
+       return Data;
+}
 
 void Table::add_column (String name, String t)
 	{
@@ -286,21 +289,54 @@ Table Table::Cross(Table a, Table b)
 {     //Initialize Table c;
 	  map<String, String> m;
       Table c(m);
+	  String ColumnForC, Temp;
 	  //Adding all of Table A columns in Table C
-       for (int i = 0 ; i<a.Column_size(); i++)
-	   { 
-		   // c.add_column(a.getcolumn());
-	     
-	   }
-
+        ColumnForC = a.Get_Column_Attributes();
+	   c.Set_Column_Attributes(ColumnForC);
+	 //Adding all of Table B columns in Table C
+		if (ColumnForC[ColumnForC.length() -1 ] == ')') ColumnForC[ColumnForC.length() -1 ] = ','; 
+        Temp = b.Get_Column_Attributes();
+		if (Temp[0] == '(') Temp[0] = ' ';
+		ColumnForC += Temp;
 	    //Adding all of Table B columns in Table C
-       for (int i = 0 ; i<a.Column_size(); i++)
-	   { 
-		   // c.add_column(b.getcolumn());
-	     
-	   }
+      c.Set_Column_Attributes(ColumnForC);
+	   
+	   vector<String> vTemp1, vTemp2;
+	  Record rTemp1(vTemp1), rTemp2(vTemp2);
+	  //Creating ROWS for TABLE C from TABLE A AND B
+	  for (int i=0; i<a.get_size(); i++)
+	  { 
+	      rTemp1 = a.get_record_at(i); 
+	      vTemp1 = rTemp1.Get_Tuple();
+		  if (i < b.get_size() ) {rTemp2 = b.get_record_at(i);
+		                          vTemp2 = rTemp2.Get_Tuple();
+								   
+								  for (int j= 0 ; j<vTemp2.size(); j++)
+								  {vTemp1.push_back(vTemp2[j]);}
+								  Record RowForC(vTemp1);
+								  c.insert_row(RowForC);
+								 }
+	      
+	  }
+	
+	  
+	  //FILLING THE REMAINDER ENTRIES WITH NULL
+	  for (int i = a.get_size()-1 ; i>=b.get_size()  ; i--)
+	  {
+	     rTemp1 = a.get_record_at(i);
+		 vTemp1 = rTemp1.Get_Tuple();
 
-
+		 for (int j = 0 ; j<b.Column_size(); j++)
+		 {
+		        vTemp1.push_back("NULL") ;
+		 }
+		 Record RecForC(vTemp1);
+	     c.insert_row(RecForC);
+	  
+	  }
+	 
+		
+	 
 	   return c;
 }
 
@@ -428,6 +464,7 @@ String 	Table::entry_max (String column_name)
 		   Row.push_back(Temp);
 		}
 		
-	if (Max_Exist == true)	 {stringstream s; s<< Max; return s.str();}
+	if (Max_Exist == true)	 {std::stringstream s; s<< Max; return s.str();}
 	else cout<<"NO MINIMUM EXIST"<<endl;
 }
+

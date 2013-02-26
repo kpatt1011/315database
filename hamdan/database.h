@@ -2,6 +2,7 @@
 #include "Record.h"
 #include "Table.h"
 
+
 #ifndef DATABASE_H
 #define DATABASE_H
 
@@ -14,7 +15,6 @@
 	##### Team 19 Members
 	- Keith Pattison (keith.pattison.tamu@gmail.com)
 	- Hamdan Siddiqui (hamdansiddiqui@hotmail.com)
-	- David Holdren (djholdren@tamu.edu)
 
 */
 

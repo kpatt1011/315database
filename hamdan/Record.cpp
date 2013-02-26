@@ -2,7 +2,7 @@
 #include "std_lib_facilities.h"
 #include <iostream>
 #include <vector>
-#include <string>
+#include <String>
 
 using namespace std;
 
@@ -62,7 +62,7 @@ Record::~Record()
 void Record::Copy(Record R)
 
 {    int length = R.get_size() -1 ;
-	 string s;
+	 String s;
 	for (int i=0 ; i<length ; i++)
 	{
 	   s = R.get_entry(i);
