@@ -1,5 +1,138 @@
 #include "Database.h";
 
+/*Helper compare funtions. Compares two values of the same type. Taking a third String parameter as the logical operation to perform */
+bool compare_strings(String a, String b, String c) {
+
+	if(c == "=" || c== "==") {
+		return (a == b);
+	}
+
+		if(c == "!=") {
+			return (a!=b);
+		}
+
+			if(c == ">") {
+				return (a>b);
+			}
+
+				if(c == "<") {
+					return (a<b);
+				}
+
+					if(c == ">=") {
+						return(a>=b);
+					}
+
+						if(c == "<=") {
+							return (a<=b);
+						}
+
+							else {
+								cout << "INVALID OPERAND " << c << "\n";
+							  return false;
+							}
+}
+
+bool compare_dates(String a, String b, String c) {
+
+	
+	if(c == "=" || c== "==") {
+		return (a == b);
+	}
+
+		if(c == "!=") {
+			return (a!=b);
+		}
+
+			if(c == ">") {
+				return (a>b);
+			}
+
+				if(c == "<") {
+					return (a<b);
+				}
+
+					if(c == ">=") {
+						return(a>=b);
+					}
+
+						if(c == "<=") {
+							return (a<=b);
+						}
+
+							else {
+								cout << "INVALID OPERAND " << c << "\n";
+							  return false;
+							}
+}
+
+bool compare_integers(int a, int b, String c) {
+
+	
+	if(c == "=" || c== "==") {
+		return (a == b);
+	}
+
+		if(c == "!=") {
+			return (a!=b);
+		}
+
+			if(c == ">") {
+				return (a>b);
+			}
+
+				if(c == "<") {
+					return (a<b);
+				}
+
+					if(c == ">=") {
+						return(a>=b);
+					}
+
+						if(c == "<=") {
+							return (a<=b);
+						}
+
+							else {
+								cout << "INVALID OPERAND " << c << "\n";
+							  return false;
+							}
+}
+
+bool compare_floats(double a, double b, String c) {
+	
+	if(c == "=" || c== "==") {
+		return (a == b);
+	}
+
+		if(c == "!=") {
+			return (a!=b);
+		}
+
+			if(c == ">") {
+				return (a>b);
+			}
+
+				if(c == "<") {
+					return (a<b);
+				}
+
+					if(c == ">=") {
+						return(a>=b);
+					}
+
+						if(c == "<=") {
+							return (a<=b);
+						}
+
+							else {
+								cout << "INVALID OPERAND " << c << "\n";
+							  return false;
+							}
+
+}
+
+
 /*Helper function. Checks to see if the name exists in the database*/
 bool name_exists_in_database(Database* a, String name) {
 	// name_exists becomes true if the Database already contains a table with the given name
@@ -122,10 +255,10 @@ Table Database::query (list<String> SELECT, String FROM, String WHERE) {
 
 	}
 
-	else {
-		cout<< "\nSpecified FROM entry does not exist in database";
-		return response;
-	}
+		else {
+			cout<< "\nSpecified FROM entry does not exist in database";
+			return response;
+		}
 
 	// Get all the possible attributes to choose from
 	String attr = from_table.Get_Column_Attributes(); 
@@ -189,22 +322,196 @@ Table Database::query (list<String> SELECT, String FROM, String WHERE) {
 			
 		}
 
-		/*Search through all of the records in the FROM table to find the data you need from the SELECT columns*/
+		
+		// Parse the WHERE String using stringstream
+		istringstream where_stream(WHERE);
 
-		for(int i=0; i < from_table.get_size(); i++) {
+		vector<bool> expressions; // Stores the true false results of expressions
+		vector<bool> conditions; // Stores the relationships between the expressions (and/or/end)
+		
 
-			vector<String> tuple_to_add;
-			Record a = from_table.get_record_at(i);
+		while (!where_stream.eof()) {
+			String current;
+			getline(where_stream, current, ' ');
 
-			for(int j=0; j < column_indexes.size(); j++) {
-				tuple_to_add.push_back(a.get_entry(column_indexes[j]));
+			
+			bool column=false;
+			int index_of_column; // The index of the column in the table specified in the WHERE condition
+
+			// Check to see if the current String is an attribute from SELECT
+			for(int i =0; i < attribute_names.size(); i++) {
+				if(attribute_names[i] == current || attribute_names[i] == (current+")")) {
+					column=true;
+					index_of_column=i;
+				}
+
 			}
 
-			Record add (tuple_to_add);
+			// If the current string is the name of a column from SELECT then this if statement is entered
+			if(column) {
 
-			response.insert_row(add);
-		}
+				String column_name=attribute_names[index_of_column];
+				String column_type=attribute_types[index_of_column];
 
+				// Stores the next word in the wherestream, should be the operand
+				String operand;
+				getline(where_stream, operand, ' ');
+
+				// Stores the next word after the operand, should be a literal value
+				String liter;
+				getline(where_stream, liter, ' ');
+
+				// Check to see if liter is of the same type as column_type
+				if(column_type == "integer" || column_type == "Integer" || column_type == "int" || column_type == "INTEGER") {
+
+					// Casts strings to ints
+					int numb;
+					istringstream ( liter ) >> numb;
+
+					/*Search through all of the records in the FROM table to find the data you need from the SELECT columns*/
+					for(int i=0; i < from_table.get_size(); i++) {
+
+						Record record_to_test = from_table.get_record_at(i);
+						String entry = record_to_test.get_entry(index_of_column);
+
+						/*Cast String entry to an integer*/
+						int entry_value;
+						istringstream ( entry ) >> entry_value;
+
+						// Call helper function to the result of the conditional expression
+						bool allowed_in_table = compare_integers(entry_value,numb,operand);
+
+						if(allowed_in_table) {
+							
+								vector<String> tuple_to_add;
+								Record a = from_table.get_record_at(i);
+
+								for(int j=0; j < column_indexes.size(); j++) {
+									tuple_to_add.push_back(a.get_entry(column_indexes[j]));
+								}
+
+								Record add (tuple_to_add);
+
+								response.insert_row(add);
+						}
+
+					}
+
+				}
+						/*Not an integer. So check if its a float */
+						else if(column_type == "FLOAT" || column_type == "float" || column_type == "double" || column_type == "DOUBLE" ) {
+
+							// Casts strings to floats
+							double numb;
+							istringstream ( liter ) >> numb;
+
+							for(int i=0; i < from_table.get_size(); i++) {
+
+								Record record_to_test = from_table.get_record_at(i);
+								String entry = record_to_test.get_entry(index_of_column);
+								double entry_value;
+								istringstream ( entry ) >> entry_value;
+
+								bool allowed_in_table = compare_floats(entry_value,numb,operand);
+
+								if(allowed_in_table) {
+							
+										vector<String> tuple_to_add;
+										Record a = from_table.get_record_at(i);
+
+										for(int j=0; j < column_indexes.size(); j++) {
+											tuple_to_add.push_back(a.get_entry(column_indexes[j]));
+										}
+
+										Record add (tuple_to_add);
+
+										response.insert_row(add);
+								}
+
+							}
+						}
+								
+									/*Not an integer, or a float. So check if its a String */
+								else if(column_type == "String" || column_type == "STRING" || column_type == "string" || column_type == "str" || column_type== "STR" ) {
+					
+									/*Iterates through every record in the FROM table, and determines if it meets the WHERE conditions*/
+									for(int i=0; i < from_table.get_size(); i++) {
+
+										Record record_to_test = from_table.get_record_at(i); 
+										String entry = record_to_test.get_entry(index_of_column);
+
+										bool allowed_in_table = compare_strings(entry,liter,operand);
+
+										if(allowed_in_table) {
+							
+												vector<String> tuple_to_add;
+												Record a = from_table.get_record_at(i);
+
+												for(int j=0; j < column_indexes.size(); j++) {
+													tuple_to_add.push_back(a.get_entry(column_indexes[j]));
+												}
+
+												Record add (tuple_to_add);
+
+												response.insert_row(add);
+										}
+
+									}
+								}
+
+
+										/*Not an integer, float, or a String. So check if its a date */
+									else if(column_type == "DATE" || column_type == "date" || column_type == "Date") {
+
+										/*Iterates through every record in the FROM table, and determines if it meets the WHERE conditions*/
+										for(int i=0; i < from_table.get_size(); i++) {
+
+											Record record_to_test = from_table.get_record_at(i); 
+											String entry = record_to_test.get_entry(index_of_column);
+
+											bool allowed_in_table = compare_strings(entry,liter,operand);
+
+						
+											if(allowed_in_table) {
+							
+													vector<String> tuple_to_add;
+													Record a = from_table.get_record_at(i);
+
+													for(int j=0; j < column_indexes.size(); j++) {
+														tuple_to_add.push_back(a.get_entry(column_indexes[j]));
+													}
+
+													Record add (tuple_to_add);
+
+													response.insert_row(add);
+											}
+
+										}
+									}
+
+												/*Not an integer, float, String, or date. So the type must be invalide */
+												else {
+													cout << "Invalid type in WHERE expression";
+													return response;
+												}
+			}
+
+			else if(current== "AND" || current == "and" || current == "&&" || current == "And") {
+				// NEED TO MAKE AND WORK
+			}
+
+			else if(current == "OR" || current == "or" || current == "||" || current == "Or") {
+				// NEED TO MAKE OR WORK
+			}
+
+			else if (current == "\0") {
+				// Nothing happens
+			}
+			else {
+				cout << "\nINVALID SYTAX IN WHERE EXPRESSION\n";
+				return response;
+			}
+		
 
 
 
@@ -221,7 +528,6 @@ Table Database::query (list<String> SELECT, String FROM, String WHERE) {
 
 	// Implement WHERE
 
-	// =, !=, >, < >=. <=
 	// Need AND, OR, NOT
 	// Needs parenthesis
 
@@ -238,7 +544,10 @@ Table Database::query (list<String> SELECT, String FROM, String WHERE) {
 
 /* You than need to iterate through that list, and find all of the elements that match the WHERE condition*/
 	
-	return response;
+}
+
+
+			return response;
 }
 
 void Database::erase(list<String> SELECT, String DELETE, String WHERE) {
@@ -246,4 +555,6 @@ void Database::erase(list<String> SELECT, String DELETE, String WHERE) {
 
 Database::~Database(){
 }
+
+
 

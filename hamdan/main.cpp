@@ -214,14 +214,20 @@ int main() {
 
 	
 	vector<String> test;
+	vector<String> test2;
 
 	test.push_back("Apple");
 	test.push_back("Tuesday");
 	test.push_back("No");
 	test.push_back("85");
 
-	Record a (test);
+	test2.push_back("Oranges");
+	test2.push_back("Wednesday");
+	test2.push_back("Yes"); 
+	test2.push_back("6");
 
+	Record a (test);
+	Record b (test2);
 	//cout << a.get_size() << endl;
 
 	//cout << "\n" << a.get_entry(0);
@@ -233,7 +239,8 @@ int main() {
 	testTable.add_column("Time","Date");
 	testTable.add_column("Sucks","String");
 	testTable.add_column("Price","Integer");
-	testTable.insert_row(test);
+	testTable.insert_row(a);
+	testTable.insert_row(b);
 	String output=testTable.Get_Column_Attributes();
 
 	//cout << output << "\n";
@@ -248,8 +255,8 @@ int main() {
 	SEL.push_back("Price");
 
 	// Test Database Function
-	Table queryResponse= testDatabase.query(SEL,"Test Table", "WHERE");
-	//queryResponse.Print();
+	Table queryResponse= testDatabase.query(SEL,"Test Table", "Stock == Apple");
+	queryResponse.Print();
 
 	map<String,String> testMap = queryResponse.get_columns();
 
@@ -259,10 +266,11 @@ int main() {
 		
 	}*/
 
-	for (auto& x: testMap) {
+	/*for (auto& x: testMap) {
     cout << x.first << ": " << x.second << '\n';
-  }
+  }*/
 
+	/*
 		for(int i=0; i < queryResponse.get_size(); i++) {
 			cout<<"\n";
 			Record a = queryResponse.get_record_at(i);
@@ -272,7 +280,29 @@ int main() {
 			}
 			
 		}
+		*/
 
+
+
+	cout<<"\n\n";
+
+
+	String broken = "Price < 9";
+	vector<String> expressions;
+	String expr_to_add;
+
+	bool keep_going=true;
+	int length=0;
+
+	while(length < broken.size() && keep_going) {
+			if(broken[length] == '(') {
+				int i=length;
+				bool end_paren_found= false;
+				while(i < broken.size() && !end_paren_found) {
+					
+				}
+			}
+	}
 
 	keep_window_open();
 
