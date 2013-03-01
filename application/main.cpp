@@ -5,7 +5,7 @@
 #include "std_lib_facilities.h"
 
 
-Table read_from_geoplaces2() {
+Table* read_from_geoplaces2() {
 
 
   
@@ -99,29 +99,9 @@ Table read_from_geoplaces2() {
 	getline( myfile, other_services, '\n' );
     columns.push_back(make_pair(other_services, Table::varchar));
 
-    columns.push_back(make_pair("placeID", Table::integer));
-    columns.push_back(make_pair("latitude", Table::floating));
-    columns.push_back(make_pair("longitude", Table::floating));
-    columns.push_back(make_pair("the_geom_meter", Table::varchar));
-    columns.push_back(make_pair("name", Table::varchar));
-    columns.push_back(make_pair("address", Table::varchar));
-    columns.push_back(make_pair("city", Table::varchar));
-	columns.push_back(make_pair("state", Table::varchar));
-	columns.push_back(make_pair("country", Table::varchar));
-	columns.push_back(make_pair("fax", Table::varchar));
-	columns.push_back(make_pair("zip", Table::varchar));
-	columns.push_back(make_pair("alcohol", Table::varchar));
-	columns.push_back(make_pair("smoking_area", Table::varchar));
-	columns.push_back(make_pair("dress_code", Table::varchar));
-	columns.push_back(make_pair("accessibility", Table::varchar));
-	columns.push_back(make_pair("price", Table::varchar));
-	columns.push_back(make_pair("url", Table::varchar));
-    columns.push_back(make_pair("Rambience", Table::varchar));
-	columns.push_back(make_pair("franchise", Table::varchar));
-	columns.push_back(make_pair("area", Table::varchar));
-	columns.push_back(make_pair("other_services", Table::varchar));
+	
 
-	Table geo (columns); // Create geo using the defined columns
+	Table* geo = new Table(columns); // Create geo using the defined columns
 	
 
 
@@ -236,49 +216,122 @@ Table read_from_geoplaces2() {
 
 	  Record add(entries); // Create record to add to table
 
-	  geo.insert(add); // Insert add record into geo
+	  geo->insert(add);  // Insert add record into geo
+	  
+	}
+    
+	myfile.close();
+	return geo;
+
+  }
+
+}
+
+Table* read_from_rating_final() {
+
+  ifstream myfile ("rating_final.csv");
+  if (myfile.is_open())
+  {
+
+	Table::ColumnList columns;
+
+	String placeID;
+	getline( myfile, placeID, ',' );
+    columns.push_back(make_pair(placeID, Table::varchar));
+
+	String latitude;
+	getline( myfile, latitude, ',' );
+	columns.push_back(make_pair(latitude, Table::integer));
+
+	String longitude;
+	getline( myfile, longitude, ',' );
+	columns.push_back(make_pair(longitude, Table::integer));
+
+	String the_geom_meter;
+	getline( myfile, the_geom_meter, ',' );
+	columns.push_back(make_pair(the_geom_meter, Table::integer));
+
+	String name;
+	getline( myfile, name, '\n' );
+    columns.push_back(make_pair(name, Table::integer));
+
+
+	Table* geo = new Table(columns); // Create geo using the defined columns
+	
+
+
+    while ( myfile.good() )
+    {
+	  vector<pair<string, string> > entries; // Entries for the record to be placed in the table
+	  
+	  string placeID;
+	  getline( myfile, placeID, ',' );
+	  pair <string,string> pair0  ("userID",placeID);   // value init
+	  entries.push_back(pair0);
+
+	  string latitude;
+	  getline( myfile, latitude, ',' );
+	  pair <string,string> pair1  ("placeID",latitude);   // value init
+	  entries.push_back(pair1);
+
+	  string longitude;
+	  getline( myfile, longitude, ',' );
+	  pair <string,string> pair2  ("rating",longitude);   // value init
+	  entries.push_back(pair2);
+
+	  string the_geom_meter;
+	  getline( myfile, the_geom_meter, ',' );
+	  pair <string,string> pair3  ("food_rating",the_geom_meter);   // value init
+	  entries.push_back(pair3);
+
+	  string name;
+	  getline( myfile, name, '\n' );
+	  pair <string,string> pair4  ("service_rating",name);   // value init
+	  entries.push_back(pair4);
+
+
+	  Record add(entries); // Create record to add to table
+
+	  geo->insert(add); // Insert add record into geo
 	  
 	}
     myfile.close();
 	return geo;
   }
-
- 
-
 }
 
 
 
 int main() {
 	
-	Database a ();
-	Table test = read_from_geoplaces2();
+	Database mainDB;
 
-	for(int i=0; i <test.size(); i++) {
-		Record print = test.at(i);
-		cout << print.get<int>("placeID")<< ", ";
-		cout << print.get<double>("latitude")<< ", ";
-		cout << print.get<double>("longitude")<< ", ";
-		cout << print.get<string>("the_geom_meter")<< ", ";
-		cout << print.get<string>("name")<< ", ";
-		cout << print.get<string>("address")<< ", ";
-		cout << print.get<string>("city")<< ", ";
-		cout << print.get<string>("state")<< ", ";
-		cout << print.get<string>("country")<< ", ";
-		cout << print.get<string>("fax")<< ", ";
-		cout << print.get<string>("zip")<< ", ";
-		cout << print.get<string>("alcohol")<< ", ";
-		cout << print.get<string>("smoking_area")<< ", ";
-		cout << print.get<string>("dress_code")<< ", ";
-		cout << print.get<string>("accessibility")<< ", ";
-		cout << print.get<string>("price")<< ", ";
-		cout << print.get<string>("url")<< ", ";
-		cout << print.get<string>("Rambience")<< ", ";
-		cout << print.get<string>("franchise")<< ", ";
-		cout << print.get<string>("area")<< ", ";
-		cout << print.get<string>("other_services")<< ", ";
-	}
 	
+
+	Table* rating_final = read_from_rating_final();
+	Table* geoplaces2 = read_from_geoplaces2();
+
+	mainDB.add_table("rating_final",rating_final);
+	mainDB.add_table("geoplaces2", geoplaces2);
+
+
+	/* This for loop prints the table, but not from the database. 
+	This should be deleted. It's just for demonstration
+	*/
+	for( int i=0; i < rating_final->size(); i++ ) {
+
+		Record print = rating_final->at(i);
+
+		cout << print.get<string>("userID")<< ", ";
+		cout << print.get<int>("placeID")<< ", ";
+		cout << print.get<int>("rating")<< ", ";
+		cout << print.get<int>("food_rating")<< ", ";
+		cout << print.get<int>("service_rating");
+		cout<<"\n\n";
+
+	}
+
 	
 	keep_window_open();
+
 }
