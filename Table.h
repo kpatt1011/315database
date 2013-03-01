@@ -251,7 +251,7 @@ public:
 	
 	   ### Return Value
 	   ____
-		_Type_
+		_String_
 			- Value of the minimum entry in the column.
 
 	   ### Parameters
