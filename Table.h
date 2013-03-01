@@ -1,5 +1,8 @@
-#include "std_lib_facilities.h"
 #include "Record.h"
+#include <list>
+#include <iostream>
+#include <map>
+#include "std_lib_facilities.h"
 
 #ifndef TABLE_H
 #define TABLE_H
@@ -11,8 +14,21 @@
 
 class Table {
 
+private:
+	map<String, String> Data;
+	list<Record> Row; 
+	String Key;
+	String Column_Attributes;
+	
+
+	//Private Cross Join Function
+	Table Cross(Table a, Table b);
+	
+	
+
+
 public:
-		
+
 	/*! 
 	
 	   ### Description
@@ -30,7 +46,9 @@ public:
 	*/
 	Table();
 
-	/*! 
+	void Print();
+	
+		/*! 
 	
 	   ### Description 
 	   ____
@@ -48,9 +66,7 @@ public:
 			   - attribute_type is the the type of the associated attribute (Integer, String, Float, Date, Time)
 		
 	*/
-
-	template <typename Type>
-	Table( map<String,Type> attributes  ){};
+	Table (map< String, String > attributes);
 
 	/*! 
 	
@@ -73,27 +89,8 @@ public:
 
 		
 	*/
-	template <typename Type>
-	void add_column(String name, Type t) {};
-
+	void add_column (String name, String t);
 	
-		/*! 
-	
-	   ### Description 
-	   ____
-	   Insert a new record (a.k.a. row) into the table.
-	
-	   ### Return Value
-	   ____
-	   None 
-	   
-	   ### Parameters
-	   ____
-			_row_
-		       - A record (tuple) to be inserted as a new row in the database
-	*/
-	void insert_row (Record row);
-
 	/*! 
 	
 	   ### Description 
@@ -109,8 +106,27 @@ public:
 			_name_
 		       - The name of the attribute (column) to be deleted
 	*/
-	void delete_column (String name); 
 
+	void 	delete_column (String name);
+
+		/*! 
+	
+	   ### Description 
+	   ____
+	   Insert a new record (a.k.a. row) into the table.
+	
+	   ### Return Value
+	   ____
+	   None 
+	   
+	   ### Parameters
+	   ____
+			_row_
+		       - A record (tuple) to be inserted as a new row in the database
+	*/
+
+	void 	insert_row (Record row);
+	
 	/*! 
 	
 	   ### Description 
@@ -126,9 +142,9 @@ public:
 	   ____
 	   None
 	*/
-	template<typename Type>
-	map<String,Type> get_columns() { return NULL; };
 
+	map< String, String > get_columns ();
+	
 	/*! 
 	
 	   ### Description 
@@ -144,7 +160,8 @@ public:
 	   ____
 	   None
 	*/
-	int get_size();
+
+	int 	get_size ();
 
 	/*! 
 	
@@ -163,8 +180,9 @@ public:
 	   _index_
 		- The int row index of the record to be retrived.
 	*/
-	Record get_record_at(int index);
 
+	Record 	get_record_at(int index);
+	
 	/*! 
 	
 	   ### Description 
@@ -183,9 +201,9 @@ public:
 	   _name2_
 		- The new name of the column
 	*/
-	void rename_column(String name1, String name2);
 
-
+	void 	rename_column (String name1, String name2);
+	
 	/*! 
 	
 	   ### Description 
@@ -205,25 +223,8 @@ public:
 	   _b_
 		- Table to be cross joined
 	*/
-	Table cross_join(Table a, Table b);
 
-	/*! 
-	
-	   ### Description 
-	   ____ 
-		Returns the sum of all the entries in a given column
-	
-	   ### Return Value
-	   ____
-		_int_
-			- Sum of all column entries
-
-	   ### Parameters
-	   ____
-	   _ column_name _
-		- Name of column to sum entries from
-	*/
-	int entry_sum(String column_name);
+	Table 	cross_join (Table a, Table b);
 
 	/*! 
 	
@@ -241,7 +242,27 @@ public:
 	   _ column_name _
 		- Name of column to count entries from
 	*/
-	int entry_count(String column_name);
+	
+	int 	entry_count (String column_name);
+	
+	/*! 
+	
+	   ### Description 
+	   ____ 
+		Returns the sum of all the entries in a given column
+	
+	   ### Return Value
+	   ____
+		_int_
+			- Sum of all column entries
+
+	   ### Parameters
+	   ____
+	   _ column_name _
+		- Name of column to sum entries from
+	*/
+
+	int 	entry_sum (String column_name);
 
 	/*! 
 	
@@ -259,8 +280,25 @@ public:
 	   _ column_name _
 		- Name of column to find minimum entry from
 	*/
-	template <typename Type>
-	Type entry_min(String column_name){};
+
+	String 	entry_min (String column_name);
+
+	/*! 
+	
+	   ### Description 
+	   ____ 
+		Returns the maximum entry in the column. 
+	
+	   ### Return Value
+	   ____
+		_String_
+			- The value of the maximum entry in the column
+
+	   ### Parameters
+	   ____
+	   _ column_name _
+		- Name of column to find maximum entry from
+	*/
 
 	/*! 
 	
@@ -278,27 +316,62 @@ public:
 	   _ column_name _
 		- Name of column to find maximum entry from
 	*/
-	template <typename Type>
-	Type entry_max(String column_name){};
 
-	/*! 
+   String 	entry_max (String column_name);
+
+   /*! 
 	
-	   ### Description
-	   ____
-	   Table Destructor
-
+	   ### Description 
+	   ____ 
+		Finds the total number of attributes (columns) in the database
+	
 	   ### Return Value
 	   ____
+		_int_
+			- The number of columns in the database
+
+	   ### Parameters
+	   ____
 	   None 
+	*/
+
+   int Column_size();
+
+   /*! 
 	
-	   ### Parameters 
+	   ### Description 
+	   ____ 
+		Returns the names of all the columns in the database, and their types as a String
+	
+	   ### Return Value
+	   ____
+		_String_
+			- The attributes (names of columns) in the table. Formatted as (Type1 Name1, Type2 Name2)
+
+	   ### Parameters
 	   ____
 	   None
-		
 	*/
-	~Table();
+   String Get_Column_Attributes()
+   {return Column_Attributes;}
 
+   /*! 
 	
+	   ### Description 
+	   ____ 
+		Returns the names of all the columns in the database, and their types as a String
+	
+	   ### Return Value
+	   ____
+	   None
+
+	   ### Parameters
+	   ____
+	   _Col_
+			- The attributes (names of columns) to be set in the table. Formatted as (Type1 Name1, Type2 Name2)
+	*/
+    void Set_Column_Attributes(String Col)
+   { Column_Attributes = Col;}
 };
 
 #endif

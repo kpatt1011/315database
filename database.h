@@ -1,6 +1,8 @@
 #include "std_lib_facilities.h"
 #include "Record.h"
 #include "Table.h"
+#include <stack>
+
 
 #ifndef DATABASE_H
 #define DATABASE_H
@@ -14,13 +16,17 @@
 	##### Team 19 Members
 	- Keith Pattison (keith.pattison.tamu@gmail.com)
 	- Hamdan Siddiqui (hamdansiddiqui@hotmail.com)
-	- David Holdren (djholdren@tamu.edu)
 
 */
 
 class Database {
 	
+	
 public: 
+	int num_tables;
+	vector<String> table_names;
+	vector<Table> tables;
+
 	/*! 
 	
 	   ### Description
@@ -95,7 +101,7 @@ public:
 		   None
 		
 	*/
-	list<string>  list_table_names();
+	list<String>  list_table_names();
 	
 	 /*! 
 	

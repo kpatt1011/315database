@@ -1,7 +1,3 @@
-#include "std_lib_facilities.h"
-
-#ifndef RECORD_H
-#define RECORD_H
 
 //! Record Class
 /*!
@@ -12,15 +8,24 @@
 	- Records are not aware of the table they are being stored in.
 	- Records are not aware of the actual type of each of their entries
 */
+#include "std_lib_facilities.h"
+#include <iostream>
+#include <vector>
 
+#ifndef RECORD_H
+#define RECORD_H
+
+using namespace std;
 
 class Record {
 	
 private:
-	  vector<String> entry_list;
+	  vector<String> Tupel;
 
+	  
 public:
 
+	void Copy(Record R);
 
 	/*! 
 	
@@ -38,10 +43,11 @@ public:
 		- List of entries to be in tuple
 
 	*/
-	Record(vector<String> entries);
+	Record(vector<String> Single_Tuple);
+
 
 	/*! 
-	
+	    
 	   ### Description 
 	   ____ 
 		Returns a String of the entry at the given index location.
@@ -112,8 +118,24 @@ public:
 	*/
 	~Record();
 
+//Overlaoding Assignment Operator
+// Not to be used by the application user
+
+Record& operator=( const Record & rhs);
+
+//Getter for vector of Tuple
+vector<String> Get_Tuple()
+{return Tupel;}
+	
+//ERASE A VALUE IN A VECTOR
+void DELETE (int index)
+{  if (index >= Tupel.size()) {cout<<"INDEX OUT OF BOUNDS"<<endl;}
+else {Tupel.erase(Tupel.begin() + index);}
+}
+
 
 };
+
 
 
 #endif
