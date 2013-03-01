@@ -132,6 +132,71 @@ bool compare_floats(double a, double b, String c) {
 
 }
 
+/*A helper function used to parse the WHERE expression into a vector of expressions */
+vector<String> parse_where(String WHERE) {
+	stack<char> test_stack;
+	
+	vector<String> expressions;
+
+	for(int i=0; i < WHERE.size(); i++) {
+		test_stack.push(WHERE[i]);
+
+
+		if(WHERE[i] == ')') {
+
+			test_stack.pop(); // Pop off to get rid of closing parenthesis
+			String backwards;
+			String backwards_condition;
+
+			// If there are still chars in the stack then proceed in placing all the chars in a string until an opening parenthesis is hit
+			while (test_stack.size() != 0 && test_stack.top() != '(') {
+				
+				 backwards += test_stack.top();
+				 test_stack.pop();
+
+			}
+			
+			// If at this point the test_stack does not have a NULL as the top, then there must be either an AND/OR in the expression
+			while(test_stack.size() != 0) {
+				backwards_condition += test_stack.top();
+				test_stack.pop();
+			}
+			
+			
+
+			// At this point the string is backwards so run this for loop to reverse it
+			String forwards="";
+			for(int j=backwards.size()-1; j>=0; j--) {
+				forwards += backwards[j];
+			}
+
+			// At this point the condition is also backwards so run this loop to reverse it 
+			String forwards_condition="";
+			for(int j=backwards_condition.size()-1; j>=0; j--) {
+				forwards_condition += backwards_condition[j];
+			}
+
+		
+			unsigned foundAND = forwards_condition.find("AND");
+			unsigned foundOR = forwards_condition.find("OR");
+
+			if(foundAND!=std::string::npos){
+				expressions.push_back("AND");
+			}
+
+			if(foundOR!=std::string::npos){
+				expressions.push_back("OR");
+			}
+			
+			expressions.push_back(forwards);
+		}
+		
+	}
+	
+	return expressions;
+	
+}
+
 
 /*Helper function. Checks to see if the name exists in the database*/
 bool name_exists_in_database(Database* a, String name) {
@@ -322,6 +387,14 @@ Table Database::query (list<String> SELECT, String FROM, String WHERE) {
 			
 		}
 
+
+		// Put where string in a vector of expressions to parse
+		vector<String> WHERE_expressions = parse_where(WHERE);
+
+		for(int i=0; i < WHERE_expressions.size(); i++) {
+			cout << WHERE_expressions[i] << "\n";
+		}
+
 		
 		// Parse the WHERE String using stringstream
 		istringstream where_stream(WHERE);
@@ -494,14 +567,6 @@ Table Database::query (list<String> SELECT, String FROM, String WHERE) {
 													cout << "Invalid type in WHERE expression";
 													return response;
 												}
-			}
-
-			else if(current== "AND" || current == "and" || current == "&&" || current == "And") {
-				// NEED TO MAKE AND WORK
-			}
-
-			else if(current == "OR" || current == "or" || current == "||" || current == "Or") {
-				// NEED TO MAKE OR WORK
 			}
 
 			else if (current == "\0") {

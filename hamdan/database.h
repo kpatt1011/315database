@@ -1,6 +1,7 @@
 #include "std_lib_facilities.h"
 #include "Record.h"
 #include "Table.h"
+#include <stack>
 
 
 #ifndef DATABASE_H
