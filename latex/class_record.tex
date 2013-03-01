@@ -1,0 +1,178 @@
+\hypertarget{class_record}{\section{Record Class Reference}
+\label{class_record}\index{Record@{Record}}
+}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_record_ad8f914fad761153437e40a9163f30f5f}{void {\bfseries Copy} (\hyperlink{class_record}{Record} R)}\label{class_record_ad8f914fad761153437e40a9163f30f5f}
+
+\item 
+\hyperlink{class_record_a855f76d7fe5339ef8c5ae6dc009fca0a}{Record} (vector$<$ String $>$ Single\-\_\-\-Tuple)
+\item 
+String \hyperlink{class_record_a57fc3ee51989c4473c7932bf97fd619a}{get\-\_\-entry} (int index)
+\item 
+void \hyperlink{class_record_a84df98c88860fc2251de7cae581795fa}{replace\-\_\-entry} (int index, String replacement)
+\item 
+int \hyperlink{class_record_a5816debfce246b6c0349a0ffe6d7a205}{get\-\_\-size} ()
+\item 
+\hyperlink{class_record_ad2ce1a99d866834ab53dedd788cb1ea6}{$\sim$\-Record} ()
+\item 
+\hypertarget{class_record_a4a4d30a389b003f3e686667ee5e36d71}{\hyperlink{class_record}{Record} \& {\bfseries operator=} (const \hyperlink{class_record}{Record} \&rhs)}\label{class_record_a4a4d30a389b003f3e686667ee5e36d71}
+
+\item 
+\hypertarget{class_record_afb55b015e43bbb606a09886582bf770b}{vector$<$ String $>$ {\bfseries Get\-\_\-\-Tuple} ()}\label{class_record_afb55b015e43bbb606a09886582bf770b}
+
+\item 
+\hypertarget{class_record_afdb6f8a02bde441e0964622f10fb80d3}{void {\bfseries D\-E\-L\-E\-T\-E} (int index)}\label{class_record_afdb6f8a02bde441e0964622f10fb80d3}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_record_a855f76d7fe5339ef8c5ae6dc009fca0a}{\index{Record@{Record}!Record@{Record}}
+\index{Record@{Record}!Record@{Record}}
+\subsubsection[{Record}]{\setlength{\rightskip}{0pt plus 5cm}Record\-::\-Record (
+\begin{DoxyParamCaption}
+\item[{vector$<$ String $>$}]{Single\-\_\-\-Tuple}
+\end{DoxyParamCaption}
+)}}\label{class_record_a855f76d7fe5339ef8c5ae6dc009fca0a}
+\paragraph*{Description}
+
+
+
+ Create a record (tuple) where each from a list of String types, where each String is an entry. This constructor allows for an arbitary amount of entries.
+
+\paragraph*{Return Value}
+
+
+
+ None
+
+\paragraph*{Parameters}
+
+
+
+ {\itshape entries}
+\begin{DoxyItemize}
+\item List of entries to be in tuple 
+\end{DoxyItemize}\hypertarget{class_record_ad2ce1a99d866834ab53dedd788cb1ea6}{\index{Record@{Record}!$\sim$\-Record@{$\sim$\-Record}}
+\index{$\sim$\-Record@{$\sim$\-Record}!Record@{Record}}
+\subsubsection[{$\sim$\-Record}]{\setlength{\rightskip}{0pt plus 5cm}Record\-::$\sim$\-Record (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_record_ad2ce1a99d866834ab53dedd788cb1ea6}
+\paragraph*{Description}
+
+
+
+ Deconstructor
+
+\paragraph*{Return Value}
+
+
+
+ None
+
+\paragraph*{Parameters}
+
+
+
+ None 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_record_a57fc3ee51989c4473c7932bf97fd619a}{\index{Record@{Record}!get\-\_\-entry@{get\-\_\-entry}}
+\index{get\-\_\-entry@{get\-\_\-entry}!Record@{Record}}
+\subsubsection[{get\-\_\-entry}]{\setlength{\rightskip}{0pt plus 5cm}String Record\-::get\-\_\-entry (
+\begin{DoxyParamCaption}
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}}\label{class_record_a57fc3ee51989c4473c7932bf97fd619a}
+\paragraph*{Description}
+
+
+
+ Returns a String of the entry at the given index location.
+
+\paragraph*{Return Value}
+
+
+
+ {\itshape String}
+\begin{DoxyItemize}
+\item The value of the entry at the given location \mbox{[}index\mbox{]}
+\end{DoxyItemize}
+
+\paragraph*{Parameters}
+
+
+
+ {\itshape index}
+\begin{DoxyItemize}
+\item The index of the desired entry to obtain 
+\end{DoxyItemize}\hypertarget{class_record_a5816debfce246b6c0349a0ffe6d7a205}{\index{Record@{Record}!get\-\_\-size@{get\-\_\-size}}
+\index{get\-\_\-size@{get\-\_\-size}!Record@{Record}}
+\subsubsection[{get\-\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}int Record\-::get\-\_\-size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_record_a5816debfce246b6c0349a0ffe6d7a205}
+\paragraph*{Description}
+
+
+
+ Returns the number of entries in this \hyperlink{class_record}{Record}.
+
+\paragraph*{Return Value}
+
+
+
+ {\itshape int}
+\begin{DoxyItemize}
+\item Number of entries in the record
+\end{DoxyItemize}
+
+\paragraph*{Parameters}
+
+
+
+ None \hypertarget{class_record_a84df98c88860fc2251de7cae581795fa}{\index{Record@{Record}!replace\-\_\-entry@{replace\-\_\-entry}}
+\index{replace\-\_\-entry@{replace\-\_\-entry}!Record@{Record}}
+\subsubsection[{replace\-\_\-entry}]{\setlength{\rightskip}{0pt plus 5cm}void Record\-::replace\-\_\-entry (
+\begin{DoxyParamCaption}
+\item[{int}]{index, }
+\item[{String}]{replacement}
+\end{DoxyParamCaption}
+)}}\label{class_record_a84df98c88860fc2251de7cae581795fa}
+\paragraph*{Description}
+
+
+
+ Replaces the entry at the designated index with the specified replacment String
+
+\paragraph*{Return Value}
+
+
+
+ None
+
+\paragraph*{Parameters}
+
+
+
+
+
+{\itshape index}
+\begin{DoxyItemize}
+\item The index of the desired entry to replace
+\end{DoxyItemize}
+
+{\itshape replacement}
+\begin{DoxyItemize}
+\item The String value to replace the current entry at index 
+\end{DoxyItemize}
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+Record.\-h\item 
+Record.\-cpp\end{DoxyCompactItemize}

@@ -1,0 +1,573 @@
+\hypertarget{class_table}{\section{Table Class Reference}
+\label{class_table}\index{Table@{Table}}
+}
+
+
+\hyperlink{class_table}{Table} Class.  
+
+
+
+
+{\ttfamily \#include $<$Table.\-h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_table_a049f2e06391781ae255c6698869c4ad1}{Table} ()
+\item 
+\hypertarget{class_table_a2ac7d7966a5ffdf363e37300cd71e060}{void {\bfseries Print} ()}\label{class_table_a2ac7d7966a5ffdf363e37300cd71e060}
+
+\item 
+\hyperlink{class_table_a5e0b096386813ba8cceaa7f94b763449}{Table} (map$<$ String, String $>$ attributes)
+\item 
+void \hyperlink{class_table_a470d64f308cd1e845e58a4d13f18369b}{add\-\_\-column} (String name, String t)
+\item 
+void \hyperlink{class_table_aeefd19d55dc64eeaecb178b07f71a7fb}{delete\-\_\-column} (String name)
+\item 
+void \hyperlink{class_table_abce2e0084e3366ce6bc9566e0c84cd8f}{insert\-\_\-row} (\hyperlink{class_record}{Record} row)
+\item 
+map$<$ String, String $>$ \hyperlink{class_table_a91166bea29254f6113d602b208e82a15}{get\-\_\-columns} ()
+\item 
+int \hyperlink{class_table_a3adee5d206107494e1ad602a435b4af3}{get\-\_\-size} ()
+\item 
+\hyperlink{class_record}{Record} \hyperlink{class_table_ad701fba9dea544b0da3ae790154251da}{get\-\_\-record\-\_\-at} (int index)
+\item 
+void \hyperlink{class_table_af56cbc68307d0b6d45204fe1d3491a83}{rename\-\_\-column} (String name1, String name2)
+\item 
+\hyperlink{class_table}{Table} \hyperlink{class_table_a91c3b362549e478dd07d07584765c69f}{cross\-\_\-join} (\hyperlink{class_table}{Table} a, \hyperlink{class_table}{Table} b)
+\item 
+int \hyperlink{class_table_a04102405af408ff40368546fc4d542fc}{entry\-\_\-count} (String column\-\_\-name)
+\item 
+int \hyperlink{class_table_a54b05026fa1e20aba8ff8dd5fb7012a9}{entry\-\_\-sum} (String column\-\_\-name)
+\item 
+String \hyperlink{class_table_a2add8bfb0ebfb6776de2c138e7adec40}{entry\-\_\-min} (String column\-\_\-name)
+\item 
+String \hyperlink{class_table_a60ea93a9d26eb80d0f4e5aa876ff4651}{entry\-\_\-max} (String column\-\_\-name)
+\item 
+int \hyperlink{class_table_a820e752f7d052238cb7a6d297a7c194b}{Column\-\_\-size} ()
+\item 
+String \hyperlink{class_table_a721b774120dcaea13e1469f5caa23c4f}{Get\-\_\-\-Column\-\_\-\-Attributes} ()
+\item 
+void \hyperlink{class_table_a5444b289be0a5a48abf295a0c45c55d6}{Set\-\_\-\-Column\-\_\-\-Attributes} (String Col)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_table}{Table} Class. 
+
+Used to implement a table (rows, columns) within a database. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_table_a049f2e06391781ae255c6698869c4ad1}{\index{Table@{Table}!Table@{Table}}
+\index{Table@{Table}!Table@{Table}}
+\subsubsection[{Table}]{\setlength{\rightskip}{0pt plus 5cm}Table\-::\-Table (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_table_a049f2e06391781ae255c6698869c4ad1}
+\paragraph*{Description}
+
+
+
+ Creates an empty table with no rows or columns
+
+\paragraph*{Return Value}
+
+
+
+ None
+
+\paragraph*{Parameters}
+
+
+
+ None \hypertarget{class_table_a5e0b096386813ba8cceaa7f94b763449}{\index{Table@{Table}!Table@{Table}}
+\index{Table@{Table}!Table@{Table}}
+\subsubsection[{Table}]{\setlength{\rightskip}{0pt plus 5cm}Table\-::\-Table (
+\begin{DoxyParamCaption}
+\item[{map$<$ String, String $>$}]{attributes}
+\end{DoxyParamCaption}
+)}}\label{class_table_a5e0b096386813ba8cceaa7f94b763449}
+\paragraph*{Description}
+
+
+
+ Constructor that takes a map of attribute names and their associated types
+
+\paragraph*{Return Value}
+
+
+
+ None
+
+\paragraph*{Parameters}
+
+
+
+ \-\_\- Attributes\-\_\-
+\begin{DoxyItemize}
+\item map$<$name,attribute\-\_\-type$>$
+\end{DoxyItemize}
+
+name is the name of each attribute. Each one must be unique
+\begin{DoxyItemize}
+\item attribute\-\_\-type is the the type of the associated attribute (Integer, String, Float, Date, Time) 
+\end{DoxyItemize}
+
+\subsection{Member Function Documentation}
+\hypertarget{class_table_a470d64f308cd1e845e58a4d13f18369b}{\index{Table@{Table}!add\-\_\-column@{add\-\_\-column}}
+\index{add\-\_\-column@{add\-\_\-column}!Table@{Table}}
+\subsubsection[{add\-\_\-column}]{\setlength{\rightskip}{0pt plus 5cm}void Table\-::add\-\_\-column (
+\begin{DoxyParamCaption}
+\item[{String}]{name, }
+\item[{String}]{t}
+\end{DoxyParamCaption}
+)}}\label{class_table_a470d64f308cd1e845e58a4d13f18369b}
+\paragraph*{Description}
+
+
+
+ Takes in a single attribute (column) name and type. Add new column to end of table. Any entries currently in the table get N\-U\-L\-L for that entry
+
+\paragraph*{Return Value}
+
+
+
+ None
+
+\paragraph*{Parameters}
+
+
+
+ {\itshape name}
+\begin{DoxyItemize}
+\item The name of the new column
+\end{DoxyItemize}
+
+{\itshape t}
+\begin{DoxyItemize}
+\item Type of new column (Integer, String, Float, Date, Time) 
+\end{DoxyItemize}\hypertarget{class_table_a820e752f7d052238cb7a6d297a7c194b}{\index{Table@{Table}!Column\-\_\-size@{Column\-\_\-size}}
+\index{Column\-\_\-size@{Column\-\_\-size}!Table@{Table}}
+\subsubsection[{Column\-\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}int Table\-::\-Column\-\_\-size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_table_a820e752f7d052238cb7a6d297a7c194b}
+\paragraph*{Description}
+
+
+
+ Finds the total number of attributes (columns) in the database
+
+\paragraph*{Return Value}
+
+
+
+ {\itshape int}
+\begin{DoxyItemize}
+\item The number of columns in the database
+\end{DoxyItemize}
+
+\paragraph*{Parameters}
+
+
+
+ None \hypertarget{class_table_a91c3b362549e478dd07d07584765c69f}{\index{Table@{Table}!cross\-\_\-join@{cross\-\_\-join}}
+\index{cross\-\_\-join@{cross\-\_\-join}!Table@{Table}}
+\subsubsection[{cross\-\_\-join}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Table} Table\-::cross\-\_\-join (
+\begin{DoxyParamCaption}
+\item[{{\bf Table}}]{a, }
+\item[{{\bf Table}}]{b}
+\end{DoxyParamCaption}
+)}}\label{class_table_a91c3b362549e478dd07d07584765c69f}
+\paragraph*{Description}
+
+
+
+ Cross join two tables.
+
+\paragraph*{Return Value}
+
+
+
+ {\itshape \hyperlink{class_table}{Table}}
+\begin{DoxyItemize}
+\item New \hyperlink{class_table}{Table} resulting from the cross join of table a and b
+\end{DoxyItemize}
+
+\paragraph*{Parameters}
+
+
+
+ {\itshape a}
+\begin{DoxyItemize}
+\item \hyperlink{class_table}{Table} to be cross joined
+\end{DoxyItemize}
+
+{\itshape b}
+\begin{DoxyItemize}
+\item \hyperlink{class_table}{Table} to be cross joined 
+\end{DoxyItemize}\hypertarget{class_table_aeefd19d55dc64eeaecb178b07f71a7fb}{\index{Table@{Table}!delete\-\_\-column@{delete\-\_\-column}}
+\index{delete\-\_\-column@{delete\-\_\-column}!Table@{Table}}
+\subsubsection[{delete\-\_\-column}]{\setlength{\rightskip}{0pt plus 5cm}void Table\-::delete\-\_\-column (
+\begin{DoxyParamCaption}
+\item[{String}]{name}
+\end{DoxyParamCaption}
+)}}\label{class_table_aeefd19d55dc64eeaecb178b07f71a7fb}
+\paragraph*{Description}
+
+
+
+ Takes an attribute (column) name and deletes it from the table
+
+\paragraph*{Return Value}
+
+
+
+ None
+
+\paragraph*{Parameters}
+
+
+
+ {\itshape name}
+\begin{DoxyItemize}
+\item The name of the attribute (column) to be deleted 
+\end{DoxyItemize}\hypertarget{class_table_a04102405af408ff40368546fc4d542fc}{\index{Table@{Table}!entry\-\_\-count@{entry\-\_\-count}}
+\index{entry\-\_\-count@{entry\-\_\-count}!Table@{Table}}
+\subsubsection[{entry\-\_\-count}]{\setlength{\rightskip}{0pt plus 5cm}int Table\-::entry\-\_\-count (
+\begin{DoxyParamCaption}
+\item[{String}]{column\-\_\-name}
+\end{DoxyParamCaption}
+)}}\label{class_table_a04102405af408ff40368546fc4d542fc}
+\paragraph*{Description}
+
+
+
+ Counts the total number of entries in the column. (non-\/null entries only)
+
+\paragraph*{Return Value}
+
+
+
+ {\itshape int}
+\begin{DoxyItemize}
+\item Number of non-\/null entries in the column
+\end{DoxyItemize}
+
+\paragraph*{Parameters}
+
+
+
+ \-\_\- column\-\_\-name \-\_\-
+\begin{DoxyItemize}
+\item Name of column to count entries from 
+\end{DoxyItemize}\hypertarget{class_table_a60ea93a9d26eb80d0f4e5aa876ff4651}{\index{Table@{Table}!entry\-\_\-max@{entry\-\_\-max}}
+\index{entry\-\_\-max@{entry\-\_\-max}!Table@{Table}}
+\subsubsection[{entry\-\_\-max}]{\setlength{\rightskip}{0pt plus 5cm}String Table\-::entry\-\_\-max (
+\begin{DoxyParamCaption}
+\item[{String}]{column\-\_\-name}
+\end{DoxyParamCaption}
+)}}\label{class_table_a60ea93a9d26eb80d0f4e5aa876ff4651}
+\paragraph*{Description}
+
+
+
+ Returns the maximum entry in the column.
+
+\paragraph*{Return Value}
+
+
+
+ {\itshape String}
+\begin{DoxyItemize}
+\item The value of the maximum entry in the column
+\end{DoxyItemize}
+
+\paragraph*{Parameters}
+
+
+
+ \-\_\- column\-\_\-name \-\_\-
+\begin{DoxyItemize}
+\item Name of column to find maximum entry from
+\end{DoxyItemize}
+
+\paragraph*{Description}
+
+
+
+ Returns the maximum entry in the column.
+
+\paragraph*{Return Value}
+
+
+
+ {\itshape Type}
+\begin{DoxyItemize}
+\item The value of the maximum entry in the column
+\end{DoxyItemize}
+
+\paragraph*{Parameters}
+
+
+
+ \-\_\- column\-\_\-name \-\_\-
+\begin{DoxyItemize}
+\item Name of column to find maximum entry from 
+\end{DoxyItemize}\hypertarget{class_table_a2add8bfb0ebfb6776de2c138e7adec40}{\index{Table@{Table}!entry\-\_\-min@{entry\-\_\-min}}
+\index{entry\-\_\-min@{entry\-\_\-min}!Table@{Table}}
+\subsubsection[{entry\-\_\-min}]{\setlength{\rightskip}{0pt plus 5cm}String Table\-::entry\-\_\-min (
+\begin{DoxyParamCaption}
+\item[{String}]{column\-\_\-name}
+\end{DoxyParamCaption}
+)}}\label{class_table_a2add8bfb0ebfb6776de2c138e7adec40}
+\paragraph*{Description}
+
+
+
+ Returns the minimum entry in the column.
+
+\paragraph*{Return Value}
+
+
+
+ {\itshape String}
+\begin{DoxyItemize}
+\item Value of the minimum entry in the column.
+\end{DoxyItemize}
+
+\paragraph*{Parameters}
+
+
+
+ \-\_\- column\-\_\-name \-\_\-
+\begin{DoxyItemize}
+\item Name of column to find minimum entry from 
+\end{DoxyItemize}\hypertarget{class_table_a54b05026fa1e20aba8ff8dd5fb7012a9}{\index{Table@{Table}!entry\-\_\-sum@{entry\-\_\-sum}}
+\index{entry\-\_\-sum@{entry\-\_\-sum}!Table@{Table}}
+\subsubsection[{entry\-\_\-sum}]{\setlength{\rightskip}{0pt plus 5cm}int Table\-::entry\-\_\-sum (
+\begin{DoxyParamCaption}
+\item[{String}]{column\-\_\-name}
+\end{DoxyParamCaption}
+)}}\label{class_table_a54b05026fa1e20aba8ff8dd5fb7012a9}
+\paragraph*{Description}
+
+
+
+ Returns the sum of all the entries in a given column
+
+\paragraph*{Return Value}
+
+
+
+ {\itshape int}
+\begin{DoxyItemize}
+\item Sum of all column entries
+\end{DoxyItemize}
+
+\paragraph*{Parameters}
+
+
+
+ \-\_\- column\-\_\-name \-\_\-
+\begin{DoxyItemize}
+\item Name of column to sum entries from 
+\end{DoxyItemize}\hypertarget{class_table_a721b774120dcaea13e1469f5caa23c4f}{\index{Table@{Table}!Get\-\_\-\-Column\-\_\-\-Attributes@{Get\-\_\-\-Column\-\_\-\-Attributes}}
+\index{Get\-\_\-\-Column\-\_\-\-Attributes@{Get\-\_\-\-Column\-\_\-\-Attributes}!Table@{Table}}
+\subsubsection[{Get\-\_\-\-Column\-\_\-\-Attributes}]{\setlength{\rightskip}{0pt plus 5cm}String Table\-::\-Get\-\_\-\-Column\-\_\-\-Attributes (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_table_a721b774120dcaea13e1469f5caa23c4f}
+\paragraph*{Description}
+
+
+
+ Returns the names of all the columns in the database, and their types as a String
+
+\paragraph*{Return Value}
+
+
+
+ {\itshape String}
+\begin{DoxyItemize}
+\item The attributes (names of columns) in the table. Formatted as (Type1 Name1, Type2 Name2)
+\end{DoxyItemize}
+
+\paragraph*{Parameters}
+
+
+
+ None \hypertarget{class_table_a91166bea29254f6113d602b208e82a15}{\index{Table@{Table}!get\-\_\-columns@{get\-\_\-columns}}
+\index{get\-\_\-columns@{get\-\_\-columns}!Table@{Table}}
+\subsubsection[{get\-\_\-columns}]{\setlength{\rightskip}{0pt plus 5cm}map$<$ String, String $>$ Table\-::get\-\_\-columns (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_table_a91166bea29254f6113d602b208e82a15}
+\paragraph*{Description}
+
+
+
+ Returns a map of all the columns (name and associated type) in the database.
+
+\paragraph*{Return Value}
+
+
+
+ {\itshape map$<$name,type$>$}
+\begin{DoxyItemize}
+\item A map of all the columns in the database. Organized with column names as the key values, pointing to their respective types
+\end{DoxyItemize}
+
+\paragraph*{Parameters}
+
+
+
+ None \hypertarget{class_table_ad701fba9dea544b0da3ae790154251da}{\index{Table@{Table}!get\-\_\-record\-\_\-at@{get\-\_\-record\-\_\-at}}
+\index{get\-\_\-record\-\_\-at@{get\-\_\-record\-\_\-at}!Table@{Table}}
+\subsubsection[{get\-\_\-record\-\_\-at}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Record} Table\-::get\-\_\-record\-\_\-at (
+\begin{DoxyParamCaption}
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}}\label{class_table_ad701fba9dea544b0da3ae790154251da}
+\paragraph*{Description}
+
+
+
+ Returns the record at the given row number in the database. Used with get\-\_\-size and a for loop it is possible to iterate all of the records in the database.
+
+\paragraph*{Return Value}
+
+
+
+ {\itshape \hyperlink{class_record}{Record}}
+\begin{DoxyItemize}
+\item The record stored at the given indexed row
+\end{DoxyItemize}
+
+\paragraph*{Parameters}
+
+
+
+ {\itshape index}
+\begin{DoxyItemize}
+\item The int row index of the record to be retrived. 
+\end{DoxyItemize}\hypertarget{class_table_a3adee5d206107494e1ad602a435b4af3}{\index{Table@{Table}!get\-\_\-size@{get\-\_\-size}}
+\index{get\-\_\-size@{get\-\_\-size}!Table@{Table}}
+\subsubsection[{get\-\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}int Table\-::get\-\_\-size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_table_a3adee5d206107494e1ad602a435b4af3}
+\paragraph*{Description}
+
+
+
+ Returns the number of records in the table
+
+\paragraph*{Return Value}
+
+
+
+ {\itshape Size}
+\begin{DoxyItemize}
+\item Number of records in the table. Returned as an int
+\end{DoxyItemize}
+
+\paragraph*{Parameters}
+
+
+
+ None \hypertarget{class_table_abce2e0084e3366ce6bc9566e0c84cd8f}{\index{Table@{Table}!insert\-\_\-row@{insert\-\_\-row}}
+\index{insert\-\_\-row@{insert\-\_\-row}!Table@{Table}}
+\subsubsection[{insert\-\_\-row}]{\setlength{\rightskip}{0pt plus 5cm}void Table\-::insert\-\_\-row (
+\begin{DoxyParamCaption}
+\item[{{\bf Record}}]{row}
+\end{DoxyParamCaption}
+)}}\label{class_table_abce2e0084e3366ce6bc9566e0c84cd8f}
+\paragraph*{Description}
+
+
+
+ Insert a new record (a.\-k.\-a. row) into the table.
+
+\paragraph*{Return Value}
+
+
+
+ None
+
+\paragraph*{Parameters}
+
+
+
+ {\itshape row}
+\begin{DoxyItemize}
+\item A record (tuple) to be inserted as a new row in the database 
+\end{DoxyItemize}\hypertarget{class_table_af56cbc68307d0b6d45204fe1d3491a83}{\index{Table@{Table}!rename\-\_\-column@{rename\-\_\-column}}
+\index{rename\-\_\-column@{rename\-\_\-column}!Table@{Table}}
+\subsubsection[{rename\-\_\-column}]{\setlength{\rightskip}{0pt plus 5cm}void Table\-::rename\-\_\-column (
+\begin{DoxyParamCaption}
+\item[{String}]{name1, }
+\item[{String}]{name2}
+\end{DoxyParamCaption}
+)}}\label{class_table_af56cbc68307d0b6d45204fe1d3491a83}
+\paragraph*{Description}
+
+
+
+ Changes the name of a current attribute (column) in the database.
+
+\paragraph*{Return Value}
+
+
+
+ None
+
+\paragraph*{Parameters}
+
+
+
+ {\itshape name1}
+\begin{DoxyItemize}
+\item The original name of the column
+\end{DoxyItemize}
+
+{\itshape name2}
+\begin{DoxyItemize}
+\item The new name of the column 
+\end{DoxyItemize}\hypertarget{class_table_a5444b289be0a5a48abf295a0c45c55d6}{\index{Table@{Table}!Set\-\_\-\-Column\-\_\-\-Attributes@{Set\-\_\-\-Column\-\_\-\-Attributes}}
+\index{Set\-\_\-\-Column\-\_\-\-Attributes@{Set\-\_\-\-Column\-\_\-\-Attributes}!Table@{Table}}
+\subsubsection[{Set\-\_\-\-Column\-\_\-\-Attributes}]{\setlength{\rightskip}{0pt plus 5cm}void Table\-::\-Set\-\_\-\-Column\-\_\-\-Attributes (
+\begin{DoxyParamCaption}
+\item[{String}]{Col}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_table_a5444b289be0a5a48abf295a0c45c55d6}
+\paragraph*{Description}
+
+
+
+ Returns the names of all the columns in the database, and their types as a String
+
+\paragraph*{Return Value}
+
+
+
+ None
+
+\paragraph*{Parameters}
+
+
+
+ {\itshape Col}
+\begin{DoxyItemize}
+\item The attributes (names of columns) to be set in the table. Formatted as (Type1 Name1, Type2 Name2) 
+\end{DoxyItemize}
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+Table.\-h\item 
+Table.\-cpp\end{DoxyCompactItemize}

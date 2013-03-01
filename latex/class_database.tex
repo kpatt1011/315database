@@ -1,0 +1,306 @@
+\hypertarget{class_database}{\section{Database Class Reference}
+\label{class_database}\index{Database@{Database}}
+}
+
+
+\hyperlink{class_database}{Database} Class.  
+
+
+
+
+{\ttfamily \#include $<$database.\-h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_database_a4703c80e6969d33565ea340f768fdadf}{Database} ()
+\item 
+void \hyperlink{class_database_ac6e9807456521575ae54e5d4314af995}{add\-\_\-table} (\hyperlink{class_table}{Table} insert, String name)
+\item 
+void \hyperlink{class_database_a7c85efbb112bdabd4190abdb9005b39a}{drop\-\_\-table} (String name)
+\item 
+list$<$ String $>$ \hyperlink{class_database_a30f10d4e72d45b9657916e1c27cd2ca1}{list\-\_\-table\-\_\-names} ()
+\item 
+list$<$ \hyperlink{class_table}{Table} $>$ \hyperlink{class_database_afcaf9633b16fabe374e914ceaf8be112}{get\-\_\-tables} ()
+\item 
+\hyperlink{class_table}{Table} \hyperlink{class_database_a84d18403d21da42baa9eb26eb8ebad6a}{query} (list$<$ String $>$ S\-E\-L\-E\-C\-T, String F\-R\-O\-M, String W\-H\-E\-R\-E)
+\item 
+void \hyperlink{class_database_ab5d75308185ae2bb66423b7584054b0c}{erase} (list$<$ String $>$ S\-E\-L\-E\-C\-T, String D\-E\-L\-E\-T\-E, String W\-H\-E\-R\-E)
+\item 
+\hyperlink{class_database_a84d399a2ad58d69daab9b05330e1316d}{$\sim$\-Database} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_database_aaef28adf454c153e00c7e8c22f411f01}{int {\bfseries num\-\_\-tables}}\label{class_database_aaef28adf454c153e00c7e8c22f411f01}
+
+\item 
+\hypertarget{class_database_a937bd8575bf99f1ebe401682e31dc6ab}{vector$<$ String $>$ {\bfseries table\-\_\-names}}\label{class_database_a937bd8575bf99f1ebe401682e31dc6ab}
+
+\item 
+\hypertarget{class_database_ab588b894851f665d6718089d4fd9ac05}{vector$<$ \hyperlink{class_table}{Table} $>$ {\bfseries tables}}\label{class_database_ab588b894851f665d6718089d4fd9ac05}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_database}{Database} Class. 
+
+Application Programming Interface (A\-P\-I) for \hyperlink{class_database}{Database} System Implementation by team 19.
+
+Any questions/concerns regarding A\-P\-I usage, documentation clarity, or grading should be directed to \href{mailto:keith.pattison.tamu@gmail.com}{\tt keith.\-pattison.\-tamu@gmail.\-com}
+
+\subparagraph*{Team 19 Members}
+
+
+\begin{DoxyItemize}
+\item Keith Pattison (\href{mailto:keith.pattison.tamu@gmail.com}{\tt keith.\-pattison.\-tamu@gmail.\-com})
+\item Hamdan Siddiqui (\href{mailto:hamdansiddiqui@hotmail.com}{\tt hamdansiddiqui@hotmail.\-com}) 
+\end{DoxyItemize}
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_database_a4703c80e6969d33565ea340f768fdadf}{\index{Database@{Database}!Database@{Database}}
+\index{Database@{Database}!Database@{Database}}
+\subsubsection[{Database}]{\setlength{\rightskip}{0pt plus 5cm}Database\-::\-Database (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_database_a4703c80e6969d33565ea340f768fdadf}
+\paragraph*{Description}
+
+
+
+ Creates an empty database
+
+\paragraph*{Return Value}
+
+
+
+ None
+
+\paragraph*{Parameters}
+
+
+
+ None \hypertarget{class_database_a84d399a2ad58d69daab9b05330e1316d}{\index{Database@{Database}!$\sim$\-Database@{$\sim$\-Database}}
+\index{$\sim$\-Database@{$\sim$\-Database}!Database@{Database}}
+\subsubsection[{$\sim$\-Database}]{\setlength{\rightskip}{0pt plus 5cm}Database\-::$\sim$\-Database (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_database_a84d399a2ad58d69daab9b05330e1316d}
+\paragraph*{Description}
+
+
+
+ Deconstructor for \hyperlink{class_database}{Database}
+
+\paragraph*{Return Value}
+
+
+
+ None
+
+\paragraph*{Parameters}
+
+
+
+ None 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_database_ac6e9807456521575ae54e5d4314af995}{\index{Database@{Database}!add\-\_\-table@{add\-\_\-table}}
+\index{add\-\_\-table@{add\-\_\-table}!Database@{Database}}
+\subsubsection[{add\-\_\-table}]{\setlength{\rightskip}{0pt plus 5cm}void Database\-::add\-\_\-table (
+\begin{DoxyParamCaption}
+\item[{{\bf Table}}]{insert, }
+\item[{String}]{name}
+\end{DoxyParamCaption}
+)}}\label{class_database_ac6e9807456521575ae54e5d4314af995}
+\paragraph*{Description}
+
+
+
+ Add a table to the database
+
+\paragraph*{Return Value}
+
+
+
+ None
+
+\paragraph*{Parameters}
+
+
+
+ {\itshape insert}
+\begin{DoxyItemize}
+\item \hyperlink{class_table}{Table} to insert into database
+\end{DoxyItemize}
+
+{\itshape name}
+\begin{DoxyItemize}
+\item Name of table within database 
+\end{DoxyItemize}\hypertarget{class_database_a7c85efbb112bdabd4190abdb9005b39a}{\index{Database@{Database}!drop\-\_\-table@{drop\-\_\-table}}
+\index{drop\-\_\-table@{drop\-\_\-table}!Database@{Database}}
+\subsubsection[{drop\-\_\-table}]{\setlength{\rightskip}{0pt plus 5cm}void Database\-::drop\-\_\-table (
+\begin{DoxyParamCaption}
+\item[{String}]{name}
+\end{DoxyParamCaption}
+)}}\label{class_database_a7c85efbb112bdabd4190abdb9005b39a}
+\paragraph*{Description}
+
+
+
+ Takes a table name and deletes it from the database
+
+\paragraph*{Return Value}
+
+
+
+ None
+
+\paragraph*{Parameters}
+
+
+
+ {\itshape name}
+\begin{DoxyItemize}
+\item Name of table to delete within database 
+\end{DoxyItemize}\hypertarget{class_database_ab5d75308185ae2bb66423b7584054b0c}{\index{Database@{Database}!erase@{erase}}
+\index{erase@{erase}!Database@{Database}}
+\subsubsection[{erase}]{\setlength{\rightskip}{0pt plus 5cm}void Database\-::erase (
+\begin{DoxyParamCaption}
+\item[{list$<$ String $>$}]{S\-E\-L\-E\-C\-T, }
+\item[{String}]{D\-E\-L\-E\-T\-E, }
+\item[{String}]{W\-H\-E\-R\-E}
+\end{DoxyParamCaption}
+)}}\label{class_database_ab5d75308185ae2bb66423b7584054b0c}
+\paragraph*{Description}
+
+
+
+ Erase tuples from the database
+
+\paragraph*{Return Value}
+
+
+
+ None
+
+\paragraph*{Parameters}
+
+
+
+ {\itshape S\-E\-L\-E\-C\-T}
+\begin{DoxyItemize}
+\item A list of which attribute names to keep.
+\item Passing a N\-U\-L\-L list of attributes indicates all attributes will be kept
+\end{DoxyItemize}
+
+{\itshape D\-E\-L\-E\-T\-E}
+\begin{DoxyItemize}
+\item Name of table containing tuples to be deleted within database
+\end{DoxyItemize}
+
+{\itshape W\-H\-E\-R\-E}
+\begin{DoxyItemize}
+\item Conditions that should be present in the attributes.
+\item Limited to comparisons using =, !=, $>$, $<$ $>$=. $<$= of attributes that have the same type 
+\end{DoxyItemize}\hypertarget{class_database_afcaf9633b16fabe374e914ceaf8be112}{\index{Database@{Database}!get\-\_\-tables@{get\-\_\-tables}}
+\index{get\-\_\-tables@{get\-\_\-tables}!Database@{Database}}
+\subsubsection[{get\-\_\-tables}]{\setlength{\rightskip}{0pt plus 5cm}list$<$ {\bf Table} $>$ Database\-::get\-\_\-tables (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_database_afcaf9633b16fabe374e914ceaf8be112}
+\paragraph*{Description}
+
+
+
+ Returns a list of all the tables in the database
+
+\paragraph*{Return Value}
+
+
+
+ {\itshape list$<$\-Table$>$}
+\begin{DoxyItemize}
+\item All of the tables in the database
+\end{DoxyItemize}
+
+\paragraph*{Parameters}
+
+
+
+ None \hypertarget{class_database_a30f10d4e72d45b9657916e1c27cd2ca1}{\index{Database@{Database}!list\-\_\-table\-\_\-names@{list\-\_\-table\-\_\-names}}
+\index{list\-\_\-table\-\_\-names@{list\-\_\-table\-\_\-names}!Database@{Database}}
+\subsubsection[{list\-\_\-table\-\_\-names}]{\setlength{\rightskip}{0pt plus 5cm}list$<$ String $>$ Database\-::list\-\_\-table\-\_\-names (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_database_a30f10d4e72d45b9657916e1c27cd2ca1}
+\paragraph*{Description}
+
+
+
+ Returns a list of all the table names in the database
+
+\paragraph*{Return Value}
+
+
+
+ {\itshape list$<$\-String$>$}
+\begin{DoxyItemize}
+\item List of all the table names database
+\end{DoxyItemize}
+
+\paragraph*{Parameters}
+
+
+
+ None \hypertarget{class_database_a84d18403d21da42baa9eb26eb8ebad6a}{\index{Database@{Database}!query@{query}}
+\index{query@{query}!Database@{Database}}
+\subsubsection[{query}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Table} Database\-::query (
+\begin{DoxyParamCaption}
+\item[{list$<$ String $>$}]{S\-E\-L\-E\-C\-T, }
+\item[{String}]{F\-R\-O\-M, }
+\item[{String}]{W\-H\-E\-R\-E}
+\end{DoxyParamCaption}
+)}}\label{class_database_a84d18403d21da42baa9eb26eb8ebad6a}
+\paragraph*{Description}
+
+
+
+ Locate tuples within the database
+
+\paragraph*{Return Value}
+
+
+
+ None
+
+\paragraph*{Parameters}
+
+
+
+ {\itshape S\-E\-L\-E\-C\-T}
+\begin{DoxyItemize}
+\item A list of which attribute names to keep.
+\item Passing a N\-U\-L\-L list of attributes indicates all attributes will be kept
+\end{DoxyItemize}
+
+{\itshape F\-R\-O\-M}
+\begin{DoxyItemize}
+\item Name of table within database
+\end{DoxyItemize}
+
+{\itshape W\-H\-E\-R\-E}
+\begin{DoxyItemize}
+\item Conditions that should be present in the attributes.
+\item Limited to comparisons using =, !=, $>$, $<$ $>$=. $<$= of attributes that have the same type 
+\end{DoxyItemize}
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+database.\-h\item 
+Database.\-cpp\end{DoxyCompactItemize}
