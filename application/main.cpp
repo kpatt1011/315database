@@ -816,19 +816,370 @@ int main() {
 	mainDB.add_table("chefmozhours4", chefmozhours4);
 
 
-	/* This for loop prints the table, but not from the database. 
-	This should be deleted. It's just for demonstration
-	*/
-	for( int i=0; i < chefmozhours4->size(); i++ ) {
+	while (true)
+	{
 
-		Record print = chefmozhours4->at(i);
+	
+	string choice;
+	cout<<"\t\t MENU"<<endl;
+	cout<<"PRESS 1 TO GET LIST OF ALL NON-ALCOHOLIC RESTAURANTS"<<endl;
+	cout<<"PRESS 2 GET ALL RESTAURANTS IN A COUNTRY"<<endl;
+	cout<<"PRESS 3 TO GET INFORMATION ABOUT A USER"<<endl;
+	cout<<"PRESS 4 TO GET USERS WHO ARE 1.7 FEET OR TALLER"<<endl;
+	cout<<"PRESS 5 TO GET USERS WEIGHING MORE THAN 70 POUNDS"<<endl;
+	cout<<"PRESS 6 TO GET CUSINE PREFERRED BY A USER"<<endl;
+	cout<<"PRESS 7 TO GET USERS WHO ARE SENIOR CITIZENS"<<endl;
+	cout<<"PRESS 8 TO GET USERS WHO PAY WITH CASH"<<endl;
+	cout<<"PRESS 9 TO GET A USER'S MODE OF PAYMENT"<<endl;
+	cout<<"PRESS 10 TO GET PROFESSION OF USER WITH HIGH BUDGET"<<endl;
+	cout<<"PRESS 11 TO GET INFO. ABOUT SINGLE USERS"<<endl;
+	cout<<"PRESS 12 TO GET RESTUARANTS WITH VALET PARKING"<<endl;
+	cout<<"PRESS 13 TO GET RESTUARANTS WITH HIGHEST FOOD RATING"<<endl;
+	cout<<"PRESS 14 TO PRINT RESTAURANTS THAT ACCEPTS VISA CREDIT CARD"<<endl;
+	cout<<"PRESS 15 TO PRINT RESTAURANTS THAT ARE OPEN ON SUNDAY"<<endl;
+	cout<<"PRESS Q TO QUIT"<<endl;
+	cin>>choice;
+	if (choice == "1") {
+						    Table *query = mainDB.query("name","geoplaces2", "alcohol = 'No_Alcohol_Served'");  
+	     	  
+							cout<<"RESTAURANT NAME"<<endl<<endl;
+							 for( int i=0; i < query->size(); i++ ) 
+							 {
+							 cout<<i+1<< " )";
+							Record print = query->at(i);
+		
+							cout << print.get<string>("name")<< endl;
+							 }
+						}
+    if (choice == "2") {			string CountryForRestaurant, Temp;
+	                                cout<<"Enter Country Name Please"<<endl;
+									cin>>CountryForRestaurant;
+									cout<<endl;
+									Temp = "country = '";
+									Temp += CountryForRestaurant +"'";
+									Table *query = mainDB.query("*","geoplaces2", Temp );  
+	     
+	  
+									cout<<"NAME\t\tADRESS\t\tCITY\t\tSTATE"<<endl<<endl;
+									for( int i=0; i < query->size(); i++ ) 
+						{
+									cout<<i+1<< " )";
+									Record print = query->at(i);
+		                            cout << print.get<string>("name");
+									cout <<"\t"<< print.get<string>("address");
+									cout <<"\t"<< print.get<string>("city");
+								
+									cout <<"\t"<< print.get<string>("state")<<endl;
+									
 
-		cout << print.get<string>("placeID")<< ", ";
-		cout << print.get<string>("hours")<< ",";
-		cout << print.get<string>("days");
-		cout<<"\n";
-
+						}
+	
 	}
+	
+	if (choice == "Q") {break;}
+	
+	if (choice == "3") {            string UserID, Temp;
+	                                cout<<"Enter UserID Please"<<endl;
+									cin>>UserID;
+									cout<<endl;
+									Temp = "userID = '";
+									Temp += UserID +"'";
+	
+								Table *query = mainDB.query("*","userprofile", Temp );  
+
+								cout<<"SMOKER\t DRINK_LEVEL\tDRESS\tAMBIENCE\tTRANSPORT\tSTATUS\tRELIGION"<<endl<<endl;
+									for( int i=0; i < query->size(); i++ ) 
+						{            
+							        cout<<i+1<< " )";
+									Record print = query->at(i);
+									cout << print.get<string>("smoker");
+									cout <<"\t"<< print.get<string>("drink_level");
+									cout <<"\t"<< print.get<string>("dress_preference");
+									cout <<"\t"<< print.get<string>("ambience");
+									cout <<"\t"<< print.get<string>("transport");
+									cout <<"\t"<< print.get<string>("marital_status");
+									cout <<"\t"<< print.get<string>("religion")<<endl;
+	                            
+						}
+	}
+	
+	 if (choice == "4") {           
+	
+								Table *query = mainDB.query("*","userprofile", "height >= 1.7" );  
+
+								cout<<"USERID\tSMOKER\tDRESS\tAMBIENCE\tTRANSPORT\tSTATUS\tRELIGION"<<endl<<endl;
+									for( int i=0; i < query->size(); i++ ) 
+						{            
+							        cout<<i+1<< " )";
+									Record print = query->at(i);
+									cout << print.get<string>("userID");
+									cout <<"  "<< print.get<string>("smoker");
+									
+									cout <<"\t"<< print.get<string>("dress_preference");
+									cout <<"\t"<< print.get<string>("ambience");
+									cout <<"\t"<< print.get<string>("transport");
+									cout <<"\t"<< print.get<string>("marital_status");
+									cout <<"\t"<< print.get<string>("religion")<<endl;
+	                            
+						}
+	}
+
+	 if (choice == "5") {           
+	
+								Table *query = mainDB.query("*","userprofile", " weight > 70" );  
+
+								cout<<"USERID\tSMOKER\tDRESS\tAMBIENCE\tTRANSPORT\tSTATUS\tRELIGION"<<endl<<endl;
+									for( int i=0; i < query->size(); i++ ) 
+						{            
+							        cout<<i+1<< " )";
+									Record print = query->at(i);
+									cout << print.get<string>("userID");
+									cout <<"  "<< print.get<string>("smoker");
+									
+									cout <<"\t"<< print.get<string>("dress_preference");
+									cout <<"\t"<< print.get<string>("ambience");
+									cout <<"\t"<< print.get<string>("transport");
+									cout <<"\t"<< print.get<string>("marital_status");
+									cout <<"\t"<< print.get<string>("religion")<<endl;
+	                            
+						}
+	}
+
+	 if (choice == "6") {            string UserID, Temp;
+	                                cout<<"Enter UserID Please"<<endl;
+									cin>>UserID;
+									cout<<endl;
+									Temp = "userID = '";
+									Temp += UserID +"'";
+	
+								Table *query = mainDB.query("*","usercuisine", Temp );  
+
+								cout<<"\t\tCUISINE"<<endl<<endl;
+									for( int i=0; i < query->size(); i++ ) 
+						{            
+							        cout<<i+1<< " )";
+									Record print = query->at(i);
+									
+									cout <<"\t"<< print.get<string>("Rcuisine")<<endl;
+									
+	                            
+						}
+	}
+
+	 if (choice == "7") {           
+	
+								Table *query = mainDB.query("*","userprofile", " birth_year < 1950" );  
+
+								cout<<"USERID\tSMOKER\tDRESS\tAMBIENCE\tTRANSPORT\tSTATUS\tRELIGION"<<endl<<endl;
+									for( int i=0; i < query->size(); i++ ) 
+						{            
+							        cout<<i+1<< " )";
+									Record print = query->at(i);
+									cout << print.get<string>("userID");
+									cout <<"  "<< print.get<string>("smoker");
+									
+									cout <<"\t"<< print.get<string>("dress_preference");
+									cout <<"\t"<< print.get<string>("ambience");
+									cout <<"\t"<< print.get<string>("transport");
+									cout <<"\t"<< print.get<string>("marital_status");
+									cout <<"\t"<< print.get<string>("religion")<<endl;
+	                            
+						}
+	}
+
+	 if (choice == "8") {           
+	
+								Table *query = mainDB.query("*","userpayment", " Upayment = 'cash'" );  
+
+								cout<<"\t\tUSERID"<<endl<<endl;
+									for( int i=0; i < query->size(); i++ ) 
+						{            
+							        cout<<i+1<< " )";
+									Record print = query->at(i);
+									cout <<"\t\t"<< print.get<string>("userID")<<endl;
+									
+	                            
+						}
+	}
+
+	  if (choice == "9") {            string UserID, Temp;
+	                                cout<<"Enter UserID Please"<<endl;
+									cin>>UserID;
+									cout<<endl;
+									Temp = "userID = '";
+									Temp += UserID +"'";
+	
+								Table *query = mainDB.query("*","userpayment", Temp );  
+
+								cout<<"\t\tMODE OF PAYMENT"<<endl<<endl;
+									for( int i=0; i < query->size(); i++ ) 
+						{            
+							        cout<<i+1<< " )";
+									Record print = query->at(i);
+									
+									cout <<"\t"<< print.get<string>("Upayment")<<endl;
+									
+	                            
+						}
+	}
+
+   if (choice == "10") {           
+	
+								Table *query = mainDB.query("*","userprofile", " budget = 'high'" );  
+
+								cout<<"USERID\t\tPROFESSION"<<endl<<endl;
+									for( int i=0; i < query->size(); i++ ) 
+						{            
+							        cout<<i+1<< " )";
+									Record print = query->at(i);
+									cout << print.get<string>("userID");
+									cout <<"  "<< print.get<string>("activity")<<endl;
+									
+									
+	                            
+						}
+	}
+
+   if (choice == "11") {           
+	
+								Table *query = mainDB.query("*","userprofile", " marital_status = 'single'" );  
+
+								cout<<"USERID\tWEIGHT\tHEIGHT\tPROFESSION\tINTEREST\tRELIGION"<<endl<<endl;
+									for( int i=0; i < query->size(); i++ ) 
+						{            
+							        cout<<i+1<< " )";
+									Record print = query->at(i);
+									cout << print.get<string>("userID");
+									cout <<"  "<< print.get<string>("weight");
+									
+									cout <<"\t"<< print.get<string>("height");
+									cout <<"\t"<< print.get<string>("activity");
+									cout <<"\t\t"<< print.get<string>("interest");
+									
+									cout <<"\t\t"<< print.get<string>("religion")<<endl;
+	                            
+						}
+	}
+
+    if (choice == "12") {           
+	                            
+							 
+								Table *q2 = mainDB.query("*","chefmozparking", " parking_lot = 'valet parking'" );
+							
+								cout<<"NAME\tADDRESS\tCITY\tSTATE\tCOUNTRY"<<endl;	
+								for( int i=0; i < q2->size(); i++ ) 
+						{               Record print = q2->at(i);
+									string ID;
+								    ID = "placeID = '";
+									ID += print.get<string>("placeID")+"'";
+							      
+									Table *q1 = mainDB.query("*","geoplaces2",ID); 
+								     for (int j =0 ;j<q1->size(); j++)
+									 { Record p1 = q1->at(j);
+									   cout<<j+1<<" )"<<endl;
+									   cout<< p1.get<string>("name");
+									   cout<<"\t"<< p1.get<string>("address");
+									   cout<<"\t"<< p1.get<string>("city");
+									   cout<<"\t"<< p1.get<string>("state");
+									   cout<<"\t"<< p1.get<string>("country")<<endl;
+									 }
+							  
+						}
+	}
+
+	 if (choice == "13") {           
+	                            
+							 
+								Table *q2 = mainDB.query("placeID","rating_final", " food_rating = '2'" );
+							    int counter=0;
+								cout<<"NAME\tADDRESS\tCITY\tSTATE\tCOUNTRY"<<endl;	
+								for( int i=0; i < q2->size(); i++ ) 
+						{               Record print = q2->at(i);
+									string ID;
+								    ID = "placeID = '";
+									ID += print.get<string>("placeID")+"'";
+							      
+									Table *q1 = mainDB.query("*","geoplaces2",ID); 
+								     for (int j =0 ;j<q1->size();counter++, j++)
+									 { Record p1 = q1->at(j);
+									   cout<<counter<<" )"<<endl;
+									   cout<< p1.get<string>("name");
+									   cout<<"\t"<< p1.get<string>("address");
+									   cout<<"\t"<< p1.get<string>("city");
+									   cout<<"\t"<< p1.get<string>("state");
+									   cout<<"\t"<< p1.get<string>("country")<<endl;
+									 }
+							  
+						}
+	}
+
+	 if (choice == "14") {           
+	                            
+							 
+							 
+								Table *q2 = mainDB.query("placeID","chefmozaccepts", " Rpayment = 'VISA'" );
+							   int counter= 0;
+								cout<<"NAME\tADDRESS\tCITY\tSTATE\tCOUNTRY"<<endl;	
+								for( int i=0; i < q2->size(); i++ ) 
+						{               Record print = q2->at(i);
+									string ID;
+								    ID = "placeID = '";
+									ID += print.get<string>("placeID")+"'";
+							      
+									Table *q1 = mainDB.query("*","geoplaces2",ID); 
+								     for (int j =0 ;j<q1->size();++counter, j++)
+									 { Record p1 = q1->at(j);
+									   cout<<counter<<" )"<<endl;
+									   cout<< p1.get<string>("name");
+									   cout<<"\t"<< p1.get<string>("address");
+									   cout<<"\t"<< p1.get<string>("city");
+									   cout<<"\t"<< p1.get<string>("state");
+									   cout<<"\t"<< p1.get<string>("country")<<endl;
+									 }
+							  
+						}
+								
+								
+
+						                                  	
+						
+	}
+
+	 if (choice == "15") {           
+	                            
+							 
+							 
+								Table *q2 = mainDB.query("placeID","chefmozhours4", " days = 'Sun;'" );
+							   int counter= 0;
+								cout<<"NAME\tADDRESS\tCITY\tSTATE\tCOUNTRY"<<endl;	
+								for( int i=0; i < q2->size(); i++ ) 
+						{               Record print = q2->at(i);
+									string ID;
+								    ID = "placeID = '";
+									ID += print.get<string>("placeID")+"'";
+							      
+									Table *q1 = mainDB.query("*","geoplaces2",ID); 
+								     for (int j =0 ;j<q1->size();++counter, j++)
+									 { Record p1 = q1->at(j);
+									   cout<<counter<<" )"<<endl;
+									   cout<< p1.get<string>("name");
+									   cout<<"\t"<< p1.get<string>("address");
+									   cout<<"\t"<< p1.get<string>("city");
+									   cout<<"\t"<< p1.get<string>("state");
+									   cout<<"\t"<< p1.get<string>("country")<<endl;
+									 }
+							  
+						}
+								
+								
+
+						                                  	
+						
+	}
+
+
+	}	
+
 
 	
 	keep_window_open();
