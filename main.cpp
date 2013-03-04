@@ -2,15 +2,10 @@
 #include <map>
 #include <stack>
 
-/*
-bool solve_expression(String current) {
-	
-}
-*/
-
 int main() {
 
 	
+	// Create records to add to tables
 	vector<String> test;
 	vector<String> test2;
 
@@ -26,11 +21,9 @@ int main() {
 
 	Record a (test);
 	Record b (test2);
-	//cout << a.get_size() << endl;
 
-	//cout << "\n" << a.get_entry(0);
 
-	
+	// Create a table to add records too, and then add to the database
 	Table testTable;
 
 	testTable.add_column("Stock","String");
@@ -41,7 +34,8 @@ int main() {
 	testTable.insert_row(b);
 	String output=testTable.Get_Column_Attributes();
 
-	//cout << output << "\n";
+
+	// Create a test database
 
 	Database testDatabase;
 	testDatabase.add_table(testTable, "Test Table");
@@ -52,68 +46,15 @@ int main() {
 	SEL.push_back("Sucks");
 	SEL.push_back("Price");
 
-	// Test Database Function
-	Table queryResponse= testDatabase.query(SEL,"Test Table", "( ((Price > 6) AND (Price < 7)) OR ((Price < 8) AND (Price != 9))  )");
+	// Test Database Functionality
+	Table queryResponse= testDatabase.query(SEL,"Test Table", "Price < 9");
 	queryResponse.Print();
 
 	map<String,String> testMap = queryResponse.get_columns();
 
-	/*
-	map<String,String>::const_iterator iterator;
-	for (iterator = testMap.begin(); iterator != testMap.end(); ++iterator) {
-		
-	}*/
-
-	/*for (auto& x: testMap) {
-    cout << x.first << ": " << x.second << '\n';
-  }*/
-
-	/*
-		for(int i=0; i < queryResponse.get_size(); i++) {
-			cout<<"\n";
-			Record a = queryResponse.get_record_at(i);
-
-			for(int j=0; j < a.get_size(); j++) {
-				cout<< j << ": " << a.get_entry(j) << "   ";
-			}
-			
-		}
-		*/
-
 
 
 	cout<<"\n\n";
-
-/*
-	String broken = "(Price < 9)";
-	vector<String> expressions;
-	String expr_to_add;
-
-	bool keep_going=true;
-	int length=0;
-
-	while(length < broken.size() && keep_going) {
-			if(broken[length] == '(') {
-				length++;
-				bool end_paren_found= false;
-				while(length < broken.size() && !end_paren_found) {
-					
-					if(broken[length] == ')') {
-						break;
-					}
-					else {
-						expr_to_add+=broken[length];
-					}
-					length++;
-				}
-			}
-
-		length++;
-	}
-
-	*/
-
-	
 
 	keep_window_open();
 

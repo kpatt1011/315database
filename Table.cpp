@@ -1,5 +1,3 @@
-
-
 #include "Table.h"
 #include "Record.h"
 #include <iostream>
@@ -120,7 +118,6 @@ void Table::add_column (String name, String t)
 		 }
 	
 	}
-
 
 int Table::Column_size()
 {   //Columns will be of the format (Attribute 1, Attribute 2, Attribute 3 , ... , Attribut n) 
@@ -255,7 +252,6 @@ void 	Table::delete_column (String name)
 	 
 	Column_Attributes = BeforeName + AfterName;
 }
-
 
 void Table::Print()
 {   

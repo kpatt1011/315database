@@ -200,6 +200,7 @@ vector<String> parse_where(String WHERE) {
 
 /*Helper function. Checks to see if the name exists in the database*/
 bool name_exists_in_database(Database* a, String name) {
+
 	// name_exists becomes true if the Database already contains a table with the given name
 	bool name_exists = false; 
 
